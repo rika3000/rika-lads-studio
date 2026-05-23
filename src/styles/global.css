@@ -1,0 +1,6 @@
+html {
+    background: #121212 url(/src/assets/dark-theme-bg.jpg) center center/cover no-repeat;
+    color: #F5F5F5;
+    /* background: #F5F5F5 url(/assets/light-theme-bg.jpg) center center/cover no-repeat;
+    color: #121212; */
+}
