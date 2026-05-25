@@ -19,9 +19,8 @@ const { pageTitle } = Astro.props;
         <title>{pageTitle}</title>
     </head>
     <body>
-        <Header />
+        <Header activePage={pageTitle} />
         <SvgSprite />
-        <h1>{pageTitle}</h1>
         <slot />
         <Footer />
         <script>

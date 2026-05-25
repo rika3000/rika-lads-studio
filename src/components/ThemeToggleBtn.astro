@@ -1,31 +1,3 @@
----
-
----
-
-<style>
-    .nav-theme-toggle {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-    }
-
-    .nav-theme-toggle > a {
-        cursor: pointer;
-    }
-
-    .nav-theme-toggle .icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 8px;
-    }
-
-    .theme-toggle-icon {
-        /* font-size: 1.2rem;
-        color: var(--text-primary);
-        transition: opacity 0.3s ease; */
-    }
-</style>
-
 <div class="nav-theme-toggle">
     <a
         id="theme-toggle-btn"
@@ -39,6 +11,7 @@
             viewBox="0 0 24 24"
             aria-hidden="true"
             style="display:none"
+            fill="currentColor"
         >
             <use href="#icon-light-mode"></use>
         </svg>
@@ -48,6 +21,7 @@
             viewBox="0 0 24 24"
             aria-hidden="true"
             style="display:none"
+            fill="currentColor"
         >
             <use href="#icon-dark-mode"></use>
         </svg>

@@ -1,59 +1,37 @@
 ---
 import SocialHandle from "./SocialHandle.astro";
 import ThemeToggleBtn from "./ThemeToggleBtn.astro";
+const { activePage } = Astro.props;
+
+const aboutTitle = "About";
+const photoAlbumTitle = "Photo Album";
+const makeupTutorialsTitle = "Makeup Tutorials";
 ---
 
-<style>
-    header {
-        min-height: 50px;
-        position: relative;
-        margin: 0;
-        /*position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--background-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem 2rem;
-        z-index: 1000;*/
-    }
-
-    /*nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-    }
-
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 2rem;
-    }
-
-    .nav-links li a {
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links li a:hover,
-    .nav-links li a.active {
-        color: var(--accent);
-    }*/
-</style>
 <header>
     <nav>
         <SocialHandle />
-        <ThemeToggleBtn />
         <ul class="nav-links">
-            <li><a href="#" class="active">Photo Album</a></li>
-            <li><a href="#">Makeup Tutorials</a></li>
-            <li><a href="#">About</a></li>
+            <li>
+                <a
+                    href="#"
+                    class={activePage === photoAlbumTitle ? "active" : ""}
+                    >PHOTO ALBUM</a
+                >
+            </li>
+            <li>
+                <a
+                    href="#"
+                    class={activePage === makeupTutorialsTitle ? "active" : ""}
+                    >MAKEUP TUTORIALS</a
+                >
+            </li>
+            <li>
+                <a href="#" class={activePage === aboutTitle ? "active" : ""}
+                    >ABOUT</a
+                >
+            </li>
+            <ThemeToggleBtn />
         </ul>
     </nav>
 </header>
