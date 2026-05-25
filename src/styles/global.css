@@ -1,6 +1,27 @@
+:root {
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-theme="dark"] {
+    --background-image: url(/src/assets/dark-theme-bg.jpg);
+    --background-color: #121212;
+    --text-primary: #F5F5F5;
+}
+
+[data-theme="light"] {
+    --background-image: url(/src/assets/light-theme-bg.jpg);
+    --background-color: #f5f5f5;
+    --text-primary: #121212;
+}
+
 html {
-    background: #121212 url(/src/assets/dark-theme-bg.jpg) center center/cover no-repeat;
-    color: #F5F5F5;
-    /* background: #F5F5F5 url(/assets/light-theme-bg.jpg) center center/cover no-repeat;
-    color: #121212; */
+    background: var(--background-color) var(--background-image) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    color: var(--text-primary);
 }
