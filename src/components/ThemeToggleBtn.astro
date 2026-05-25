@@ -9,6 +9,10 @@
         gap: 1.2rem;
     }
 
+    .nav-theme-toggle > a {
+        cursor: pointer;
+    }
+
     .nav-theme-toggle .icon {
         width: 24px;
         height: 24px;
@@ -29,25 +33,23 @@
         title="Toggle theme"
         aria-pressed="false"
     >
-        <span
+        <svg
             id="theme-icon-sun"
-            class="theme-toggle-icon"
+            class="icon"
+            viewBox="0 0 24 24"
             aria-hidden="true"
             style="display:none"
         >
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="#icon-light-mode"></use>
-            </svg>
-        </span>
-        <span
+            <use href="#icon-light-mode"></use>
+        </svg>
+        <svg
             id="theme-icon-moon"
-            class="theme-toggle-icon"
+            class="icon"
+            viewBox="0 0 24 24"
             aria-hidden="true"
             style="display:none"
         >
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="#icon-dark-mode"></use>
-            </svg></span
-        >
+            <use href="#icon-dark-mode"></use>
+        </svg>
     </a>
 </div>
