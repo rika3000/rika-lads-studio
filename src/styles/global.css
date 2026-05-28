@@ -11,7 +11,7 @@
 
 [data-theme="dark"] {
     /* --background-image: url(/src/assets/dark-theme-bg.jpg); */
-    --body-bg-image: url(/src/assets/dark-theme-bg.jpg);
+    --body-bg-image: url(/public/images/dark-theme-bg.jpg);
     --body-bg-color: #040A12;
     --body-text-color: var(--white);
 
@@ -42,7 +42,7 @@
 
 [data-theme="light"] {
     /* --background-image: url(/src/assets/light-theme-bg.jpg); */
-    --body-bg-image: url(/src/assets/light-theme-bg.jpg);
+    --body-bg-image: url(/public/images/light-theme-bg.jpg);
     --body-bg-color: #E3E1DD;
     --body-text-color: #4E4749;
 

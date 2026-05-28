@@ -1,3 +1,20 @@
 ---
-import makeupTutorials from '../data/makeup_tutorials.json';
+interface Props {
+    thumbnailPath: string;
+    title: string;
+    date: string;
+    postUrl: string;
+}
+
+const { thumbnailPath, title, date, postUrl } = Astro.props;
 ---
+
+<div class="card">
+    <a href={`${postUrl}`} target="_blank">
+        <img src={thumbnailPath} alt={title} />
+        <div class="card-body">
+            <p class="card-title">{title}</p>
+            <p class="card-date">{date}</p>
+        </div>
+    </a>
+</div>

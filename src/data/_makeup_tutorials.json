@@ -1,0 +1,82 @@
+{
+    "tutorials": [
+        {
+            "id": 1,
+            "title": "001 Daytime Look",
+            "date": "2025-08-17",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1957280843594100769"
+        },
+        {
+            "id": 2,
+            "title": "002 Nighttime Look",
+            "date": "2025-08-18",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1957346382987317758"
+        },
+        {
+            "id": 3,
+            "title": "003 Charmed by You",
+            "date": "2025-08-21",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1958416172916846625"
+        },
+        {
+            "id": 4,
+            "title": "004 Something Blue",
+            "date": "2025-08-22",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1959095057556058384"
+        },
+        {
+            "id": 5,
+            "title": "005 Rose Milk Tea",
+            "date": "2025-09-14",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1967367026160369891"
+        },
+        {
+            "id": 6,
+            "title": "006 Cozy Tobacco",
+            "date": "2025-09-18",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1968717269095055547"
+        },
+        {
+            "id": 7,
+            "title": "007 The Siren",
+            "date": "2025-10-31",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1984423753569505790"
+        },
+        {
+            "id": 8,
+            "title": "008 Dusty Pastel Lite",
+            "date": "2025-11-02",
+            "postUrl": "https://x.com/rikaLADSstudio/status/1985096361579360554"
+        },
+        {
+            "id": 9,
+            "title": "009 Champagne Blush",
+            "date": "2025-12-15",
+            "postUrl": "https://x.com/rikaLADSstudio/status/2000470700088234197"
+        },
+        {
+            "id": 10,
+            "title": "010 Urban Caramel",
+            "date": "2026-01-08",
+            "postUrl": "https://x.com/rikaLADSstudio/status/2009477315454218645"
+        },
+        {
+            "id": 11,
+            "title": "011 Blushing Peony",
+            "date": "2026-02-17",
+            "postUrl": "https://x.com/rikaLADSstudio/status/2023684991557788025"
+        },
+        {
+            "id": 12,
+            "title": "012 Coral Monochrome",
+            "date": "2026-04-29",
+            "postUrl": "https://x.com/rikaLADSstudio/status/2049641092946288713"
+        },
+        {
+            "id": 13,
+            "title": "013 Artemis Glow",
+            "date": "2026-05-01",
+            "postUrl": "https://x.com/rikaLADSstudio/status/2050301643128992019"
+        }
+    ]
+}
