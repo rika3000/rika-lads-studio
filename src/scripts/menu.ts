@@ -8,8 +8,6 @@ const navigationCloseBtn = document.getElementById('navigation-close-btn') as HT
 const lightbox = document.getElementById('lightbox') as HTMLFormElement;
 const footerYearTxt = document.getElementById('footer-year') as HTMLFormElement;
 
-
-
 /* ════════════════════════════════════════════
    THEME TOGGLE
    ════════════════════════════════════════════ */
@@ -20,8 +18,8 @@ function init() {
     lightModeIcon.style.display = saved === DARK_THEME ? 'block' : 'none';
     darkModeIcon.style.display = saved === DARK_THEME ? 'none' : 'block';
 
-    themeToggleBtn.title = saved === 'dark' ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
-    mobileThemeToggleBtn.innerText = saved === 'dark' ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
+    themeToggleBtn.title = saved === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
+    mobileThemeToggleBtn.innerText = saved === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
     footerYearTxt.textContent = `${new Date().getFullYear()}`;
 
 }
@@ -44,7 +42,8 @@ function toggleDarkLightTheme() {
     lightModeIcon.style.display = next === DARK_THEME ? 'block' : 'none';
     darkModeIcon.style.display = next === DARK_THEME ? 'none' : 'block';
     localStorage.setItem('theme', next);
-    mobileThemeToggleBtn.innerText = next === 'dark' ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
+    themeToggleBtn.title = next === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
+    mobileThemeToggleBtn.innerText = next === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
 }
 
 
@@ -55,12 +54,10 @@ navigationCloseBtn?.addEventListener('click', toggleMobileNavigationMenu);
 
 window.addEventListener('resize', () => {
     const isExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true' && navigationCloseBtn.getAttribute('aria-expanded') === 'true';
-    //TODO: revert back to 650 after testing
-    if (window.innerWidth > 700 && isExpanded) {
+    if (window.innerWidth > 750 && isExpanded) {
         navigationMenuBtn.setAttribute('aria-expanded', `${!isExpanded}`);
         navigationCloseBtn.setAttribute('aria-expanded', `${!isExpanded}`);
         closeLightbox();
-
     }
 });
 
@@ -77,6 +74,15 @@ function closeLightbox() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
 }
+
+lightbox?.addEventListener('click', () => {
+    const isNavigationMenuExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true' && navigationCloseBtn.getAttribute('aria-expanded') === 'true';
+    if (isNavigationMenuExpanded) {
+        navigationMenuBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+        navigationCloseBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+        closeLightbox();
+    }
+});
 
 
 
