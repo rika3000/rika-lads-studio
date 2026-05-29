@@ -29,7 +29,7 @@ const thumbnailList = Object.values(makeupTutorials.tutorials).map(
         return {
             src: thumbnailModule
                 ? thumbnailModule.default.src
-                : "https://placehold.co/500",
+                : "https://placehold.co/500x400",
             alt: tutorial.title,
             dateFormattedString: formatDate(tutorial.date),
             ...tutorial,
@@ -38,8 +38,7 @@ const thumbnailList = Object.values(makeupTutorials.tutorials).map(
 );
 ---
 
-<!-- display total tutorial count -->
-<div id="makeup-tutorial-container">
+<div id="makeup-tutorials-container">
     <div id="tutorial-count">
         {makeupTutorials.tutorials.length} TUTORIAL{
             makeupTutorials.tutorials.length !== 1 ? "S" : ""

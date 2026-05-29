@@ -5,6 +5,11 @@
 
     --accent: #C1685A;
     --white: #F2F2F2;
+    --black: #1A140E;
+    /* 3 shades of grey, 3 is darkest */
+    --grey-1: #C5C2D3;
+    --grey-2: #7F7C87;
+    --grey-3: #4E4749;
     --max-width-page: 1300px;
 
 }
@@ -316,7 +321,7 @@ body::after {
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 160px calc((100% - var(--max-width-page))/2) 80px;
+    padding: 160px calc((100% - var(--max-width-page))/2) 60px;
     /*padding: 160px 3rem 80px;*/
 }
 
@@ -339,7 +344,6 @@ body::after {
     line-height: 1.05;
     letter-spacing: -0.01em;
     color: var(--hero-heading-color);
-    margin-bottom: 2rem;
     /*opacity: 0;
     animation: fadeUp 0.8s 0.35s forwards;*/
 }
@@ -350,10 +354,11 @@ body::after {
 }
 
 .hero-sub {
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
     color: var(--hero-text-color);
-    margin-top: 1rem;
+    margin-top: 2rem;
     /*opacity: 0;
     animation: fadeUp 0.8s 0.5s forwards;*/
 }
@@ -379,11 +384,98 @@ body::after {
     pointer-events: all;
 }
 
+/* ── MAKEUP TUTORIALS CONTENT ── */
+#makeup-tutorials-container {
+    margin: 0 calc((100% - var(--max-width-page))/2) 10rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#makeup-tutorials-container #tutorial-count {
+    font-size: 1.1rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1.6rem;
+    text-align: right;
+    font-weight: 500;
+}
+
+#makeup-tutorials-container .grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+}
+
+#makeup-tutorials-container .card {
+    break-inside: avoid;
+    display: block;
+    max-width: 310px;
+    margin: 0 auto 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 0 0;
+}
+
+
+
+#makeup-tutorials-container .card a {
+    display: flex;
+    width: 100%;
+}
+
+
+#makeup-tutorials-container .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    transition: filter 0.4s ease, transform 0.5s ease;
+}
+
+#makeup-tutorials-container .card:hover img {
+    filter: brightness(1.05) saturate(1.05);
+    transform: scale(1.08);
+}
+
+#makeup-tutorials-container .card .card-body {
+    display: flex;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid var(--white);
+    /* The blur effect applied to the background behind the element */
+    backdrop-filter: blur(5px);
+    mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 50%);
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 1rem 0.6rem;
+}
+
+#makeup-tutorials-container .card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    color: var(--white);
+}
+
+#makeup-tutorials-container .card-date {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+
+
+
 /* ── FOOTER ── */
 footer {
     position: absolute;
     bottom: 0;
-    /* height: 60px; */
+    /*height: 60px;*/
     width: 100%;
     background: var(--footer-bg-color);
     padding: 30px 0;
@@ -426,6 +518,10 @@ footer {
     .hero {
         padding: 160px 3rem 80px;
     }
+
+    #makeup-tutorials-container .card {
+        width: 400px;
+    }
 }
 
 @media (max-width:900px) {
@@ -449,7 +545,7 @@ footer {
     }*/
 
     .hero {
-        padding: 160px 1rem 80px;
+        padding: 160px 1rem 40px;
     }
 
 
