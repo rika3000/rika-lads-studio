@@ -321,7 +321,7 @@ body::after {
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 160px calc((100% - var(--max-width-page))/2) 60px;
+    margin: 160px calc((100% - var(--max-width-page))/2) 60px;
     /*padding: 160px 3rem 80px;*/
 }
 
@@ -401,14 +401,14 @@ body::after {
 
 #makeup-tutorials-container .grid {
     display: grid;
-    grid-template-columns: repeat(4, auto);
-    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
 }
 
 #makeup-tutorials-container .card {
     break-inside: avoid;
     display: block;
-    max-width: 310px;
+    /* max-width: 310px; */
     margin: 0 auto 30px;
     position: relative;
     overflow: hidden;
@@ -458,6 +458,9 @@ body::after {
     font-weight: 500;
     letter-spacing: 0.1rem;
     color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #makeup-tutorials-container .card-date {
@@ -478,7 +481,7 @@ footer {
     /*height: 60px;*/
     width: 100%;
     background: var(--footer-bg-color);
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
 .footer-content {
@@ -491,7 +494,7 @@ footer {
 
 .footer-content>p {
     color: var(--footer-text-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     letter-spacing: 0.02em;
 }
 
@@ -516,18 +519,31 @@ footer {
     }
 
     .hero {
-        padding: 160px 3rem 80px;
+        margin-top: 160px;
+        margin-bottom: 80px;
     }
 
-    #makeup-tutorials-container .card {
-        width: 400px;
+    .hero,
+    #makeup-tutorials-container {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    #makeup-tutorials-container .grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
+
 
 @media (max-width:900px) {
     .navbar {
         padding: 0 1rem;
     }
+
+    #makeup-tutorials-container .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media (max-width:750px) {
@@ -545,17 +561,33 @@ footer {
     }*/
 
     .hero {
-        padding: 160px 1rem 40px;
+        margin-top: 160px;
+        margin-bottom: 40px;
     }
 
+    .hero,
+    #makeup-tutorials-container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
 
+@media (max-width:600px) {
+    .hero .hero-sub {
+        font-size: 1rem;
+    }
+}
 
+@media (max-width: 480px) {
+    .hero .hero-sub {
+        font-size: 0.9rem;
+    }
+
+    #makeup-tutorials-container .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
 
 }
 
-/*@media (max-width:600px) {}
-
-@media (max-width: 480px) {}
-
-@media (max-width: 360px) {}*/
+/* @media (max-width: 360px) {} */
