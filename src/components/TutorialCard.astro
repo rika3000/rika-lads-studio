@@ -11,7 +11,12 @@ const { thumbnailPath, title, date, postUrl } = Astro.props;
 
 <div class="tutorial-card">
     <a href={`${postUrl}`} target="_blank">
-        <img src={thumbnailPath} alt={title} />
+        <img
+            src={thumbnailPath}
+            alt={title}
+            onerror="this.onerror=null; this.src='https://placehold.co/500x400'"
+            loading="lazy"
+        />
         <div class="card-body">
             <p class="card-title">{title}</p>
             <p class="card-date">{date}</p>

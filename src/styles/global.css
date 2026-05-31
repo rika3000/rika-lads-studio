@@ -392,13 +392,15 @@ body::after {
 }
 
 /* ── MAKEUP TUTORIALS CONTENT ── */
-#makeup-tutorials-container {
+#makeup-tutorials-container,
+#photo-album-container {
     margin: 0 calc((100% - var(--max-width-page))/2) 10rem;
     display: flex;
     flex-direction: column;
 }
 
-#makeup-tutorials-container #tutorial-count {
+#makeup-tutorials-container .total,
+#photo-album-container .total {
     font-size: 1.1rem;
     letter-spacing: 0.3rem;
     margin-bottom: 1.6rem;
@@ -407,13 +409,15 @@ body::after {
     color: var(--count-text-color);
 }
 
-#makeup-tutorials-container .grid {
+#makeup-tutorials-container .grid,
+#photo-album-container .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 
-#makeup-tutorials-container .tutorial-card {
+#makeup-tutorials-container .tutorial-card,
+#photo-album-container .photo-card {
     break-inside: avoid;
     display: block;
     /* max-width: 310px; */
@@ -431,7 +435,8 @@ body::after {
 }
 
 
-#makeup-tutorials-container .tutorial-card img {
+#makeup-tutorials-container .tutorial-card img,
+#photo-album-container .photo-card img {
     width: 100%;
     height: auto;
     display: block;
@@ -441,12 +446,14 @@ body::after {
     z-index: 1;
 }
 
-#makeup-tutorials-container .tutorial-card:hover img {
+#makeup-tutorials-container .tutorial-card:hover img,
+#photo-album-container .photo-card:hover img {
     filter: brightness(1.05) saturate(1.05);
     transform: scale(1.08);
 }
 
-#makeup-tutorials-container .tutorial-card .card-body {
+#makeup-tutorials-container .tutorial-card .card-body,
+#photo-album-container .photo-card .card-body {
     display: flex;
     position: absolute;
     right: 0;

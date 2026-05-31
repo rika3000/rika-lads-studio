@@ -1,66 +1,45 @@
 ---
-import type { ImageMetadata } from "astro";
 import photoAlbumJson from "../data/photo_album.json";
 import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
 
-// Glob all potential images into a map
-/*const allThumbnails = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/tutorials/*.webp",
-    { eager: true },
-);
-
-// Process and render
-const thumbnailList = Object.values(makeupTutorials.tutorials).map(
-    (tutorial) => {
-        const thumbnailModule =
-            allThumbnails[`/src/assets/tutorials/${tutorial.id}.webp`];
+const thumbnailList = Object.values(photoAlbumJson.images).map(
+    (image, index) => {
         return {
-            src: thumbnailModule
-                ? thumbnailModule.default.src
-                : "https://placehold.co/500x400",
-            alt: tutorial.title,
-            dateFormattedString: formatDate(tutorial.date),
-            ...tutorial,
+            index: index,
+            src: `/images/photos/${image.name}.webp`,
+            alt: image.name,
+            dateFormattedString: formatDate(image.date),
+            ...image,
         };
     },
-);*/
+);
 ---
 
-<div id="makeup-tutorials-container">
-    <div id="tutorial-count">
-        {photoAlbumJson.images.length} TUTORIAL{
+<div id="photo-album-container">
+    <div class="total">
+        {photoAlbumJson.images.length} PHOTO{
             photoAlbumJson.images.length !== 1 ? "S" : ""
         }
     </div>
-    <!--    <section id="makeup-tutorials-section">
+    <section id="photo-album-section">
         <div class="grid">
             {
-                thumbnailList.map((tutorial) => (
-                    <TutorialCard
-                        thumbnailPath={tutorial.src}
-                        title={tutorial.title}
-                        date={tutorial.dateFormattedString}
-                        postUrl={tutorial.postUrl}
+                thumbnailList.map((thumbnail) => (
+                    <PhotoCard
+                        index={thumbnail.index}
+                        name={thumbnail.name}
+                        date={thumbnail.dateFormattedString}
+                        characterList={thumbnail.characters}
+                        tags={thumbnail.tags}
+                        qrPostUrl={thumbnail.qrPostUrl}
                     />
                 ))
             }
         </div>
-    </section>
-</div> -->
-    <!-- TODO: Add empty state if no tutorials are available -->
-    <!--
-<div class="empty-state" style="display: none;">
-    <div class="empty-state-icon">✦</div>
-    <p>No tutorial available.</p>
-</div>
--->
-
-    <section class="gallery-section">
-        <div class="gallery-grid" id="gallery-grid"></div>
-        <div class="empty-state" id="empty-state">
+        <!-- <div class="empty-state" id="empty-state">
             <div class="empty-state-icon">✦</div>
             <p>No images match the selected filters.</p>
-        </div>
+        </div>-->
     </section>
 </div>
