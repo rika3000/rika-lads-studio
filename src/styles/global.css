@@ -16,7 +16,7 @@
 
 [data-theme="dark"] {
     /* --background-image: url(/src/assets/dark-theme-bg.jpg); */
-    --body-bg-image: url(/public/images/dark-theme-bg.jpg);
+    /* --body-bg-image: url(/images/dark_theme3.jpg); */
     --body-bg-color: #040A12;
     --body-text-color: var(--white);
 
@@ -40,14 +40,17 @@
     --hero-eyebrow-text-color: rgba(197, 194, 211, 0.4);
     --hero-text-color: rgba(245, 242, 237, 0.6);
 
-    --footer-bg-color: #040A12;
+    --count-text-color: rgba(245, 242, 237, 0.7);
+
+    /* --footer-bg-color: #040A12; */
+    --footer-border-color: rgba(242, 242, 242, 0.1);
     --footer-text-color: #C4C1D2;
 
 }
 
 [data-theme="light"] {
     /* --background-image: url(/src/assets/light-theme-bg.jpg); */
-    --body-bg-image: url(/public/images/light-theme-bg.jpg);
+    /* --body-bg-image: url(/images/light-theme-bg.jpg); */
     --body-bg-color: #E3E1DD;
     --body-text-color: #4E4749;
 
@@ -68,7 +71,10 @@
     --hero-eyebrow-text-color: rgba(135, 103, 88, 0.4);
     --hero-text-color: #4E4749;
 
-    --footer-bg-color: var(--white);
+    --count-text-color: rgba(78, 71, 73, 0.8);
+
+    /* --footer-bg-color: transparent; */
+    --footer-border-color: rgba(78, 71, 73, 0.1);
     --footer-text-color: #4E4749;
 }
 
@@ -94,7 +100,8 @@ body {
     display: flex;
     flex-direction: column;
 
-    background: var(--body-bg-color) var(--body-bg-image) no-repeat center center fixed;
+    background: var(--body-bg-color);
+    /* background: var(--body-bg-color) var(--body-bg-image) no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -397,6 +404,7 @@ body::after {
     margin-bottom: 1.6rem;
     text-align: right;
     font-weight: 500;
+    color: var(--count-text-color);
 }
 
 #makeup-tutorials-container .grid {
@@ -417,7 +425,6 @@ body::after {
 }
 
 
-
 #makeup-tutorials-container .card a {
     display: flex;
     width: 100%;
@@ -429,7 +436,9 @@ body::after {
     height: auto;
     display: block;
     position: relative;
+    overflow: hidden;
     transition: filter 0.4s ease, transform 0.5s ease;
+    z-index: 1;
 }
 
 #makeup-tutorials-container .card:hover img {
@@ -451,6 +460,8 @@ body::after {
     flex-direction: column;
     justify-content: flex-end;
     padding: 2rem 1rem 0.6rem;
+    /* Ensure content sits above the blur */
+    z-index: 2;
 }
 
 #makeup-tutorials-container .card-title {
@@ -480,8 +491,9 @@ footer {
     bottom: 0;
     /*height: 60px;*/
     width: 100%;
-    background: var(--footer-bg-color);
-    padding: 40px 0;
+    /* background: var(--footer-bg-color); */
+    padding: 30px 0 40px;
+    border-top: 2px solid var(--footer-border-color);
 }
 
 .footer-content {
@@ -555,11 +567,6 @@ footer {
         display: flex;
     }
 
-    /*.nav-links {
-        position: absolute;
-        display: block;
-    }*/
-
     .hero {
         margin-top: 160px;
         margin-bottom: 40px;
@@ -579,6 +586,7 @@ footer {
 }
 
 @media (max-width: 480px) {
+
     .hero .hero-sub {
         font-size: 0.9rem;
     }
