@@ -1,20 +1,15 @@
-<div class="lightbox-inner">
-    <!-- 
-        <button id="photo-lightbox-close-btn">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                <use href="#icon-close"></use>
-            </svg>
-            <span>CLOSE</span>
-        </button>
-        <
-     -->
+---
+const { photoData } = Astro.props;
+---
 
-    <button class="lightbox-close" id="lb-close">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+<div class="lightbox-inner">
+    <button id="photo-lightbox-close-btn">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
             <use href="#icon-close"></use>
         </svg>
-        Close
+        <span>CLOSE</span>
     </button>
+
     <button
         class="lightbox-nav lightbox-prev"
         id="lb-prev"
@@ -24,7 +19,7 @@
             <use href="#chev-left"></use>
         </svg>
     </button>
-    <img class="lightbox-img" id="lb-img" src="./images/003.webp" alt="" />
+    <img class="lightbox-img" id="lb-img" src="{photoData.src}" alt="" />
     <button
         class="lightbox-nav lightbox-right"
         id="lb-next"
@@ -35,18 +30,19 @@
         </svg>
     </button>
     <div class="lightbox-tags" id="lb-tags">
-        <span class="lb-tag">F2P Friendly Pose</span><span class="lb-tag"
-            >Myth</span>
+        {photoData.tags.map((tag: string) => <span class="lb-tag">{tag}</span>)}
     </div>
     <div class="lightbox-meta">
         <div class="lightbox-characters" id="lb-characters">
-            003&nbsp;<em>•&nbsp;&nbsp;August 2025</em>
+            {photoData.name}&nbsp;<em
+                >•&nbsp;&nbsp;{photoData.dateFormattedString}</em
+            >
         </div>
         <a
             id="lb-qr"
-            href="https://x.com/rikaLADSstudio/status/1960735372264267826"
+            href="{photoData.qrPostUrl}"
             target="_blank"
-            class="lb-qr-btn"
+            class="link-btn"
             style="display: inline-flex;"
         >
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -56,9 +52,9 @@
         </a>
         <a
             id="lb-post-link"
-            href="#"
+            href="{photoData.mainPostUrl}"
             target="_blank"
-            class="lb-post-link-btn"
+            class="link-btn"
             style="display:none"
         >
             Give This Post Some

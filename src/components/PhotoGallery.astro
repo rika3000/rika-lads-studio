@@ -1,9 +1,12 @@
 ---
-import photoAlbumJson from "../data/photo_album.json";
+import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
+import PhotoLightbox from "./PhotoLightbox.astro";
 
-const thumbnailList = Object.values(photoAlbumJson.images).map(
+let selectedPhotoIndex = 0;
+
+const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
         return {
             index: index,
@@ -14,19 +17,22 @@ const thumbnailList = Object.values(photoAlbumJson.images).map(
         };
     },
 );
+
+// TODO: add add event listener for all photocards
 ---
 
-<div id="photo-album-container">
+<div id="photo-gallery-container">
     <div class="total">
-        {photoAlbumJson.images.length} PHOTO{
-            photoAlbumJson.images.length !== 1 ? "S" : ""
+        {photoGalleryJson.images.length} PHOTO{
+            photoGalleryJson.images.length !== 1 ? "S" : ""
         }
     </div>
-    <section id="photo-album-section">
+    <section id="photo-gallery-section">
         <div class="grid">
             {
                 thumbnailList.map((thumbnail) => (
                     <PhotoCard
+                        client:load
                         index={thumbnail.index}
                         name={thumbnail.name}
                         date={thumbnail.dateFormattedString}
@@ -42,4 +48,6 @@ const thumbnailList = Object.values(photoAlbumJson.images).map(
             <p>No images match the selected filters.</p>
         </div>-->
     </section>
+    <!-- photoData should be updated based on its index when a PhotoCard is clicked -->
+    <!-- <PhotoLightbox photoData={thumbnailList[selectedPhotoIndex]} /> -->
 </div>
