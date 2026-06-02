@@ -2,9 +2,6 @@
 import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
-import PhotoLightbox from "./PhotoLightbox.astro";
-
-// let selectedPhotoIndex = 0;
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
@@ -46,25 +43,43 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
                                 </ul>
                             </div>
                             <div class="lightbox-info">
-                                <p>{image.name}</p>
-                                <p>{image.dateFormattedString}</p>
+                                <p id="photo-name">{image.name}</p>
+                                <p id="photo-date">
+                                    {image.dateFormattedString}
+                                </p>
                             </div>
                             <div class="lightbox-link">
                                 {image.qrPostUrl ? (
                                     <a
-                                        id="selected-photo-link"
+                                        id="qr-code-btn"
                                         href={image.qrPostUrl}
                                         target="_blank"
                                     >
-                                        Get QR Code
+                                        <svg
+                                            class="icon"
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                            fill="currentColor"
+                                        >
+                                            <use href="#icon-qr" />
+                                        </svg>
+                                        &nbsp;GET QR CODE
                                     </a>
                                 ) : (
                                     <a
-                                        id="selected-photo-link"
+                                        id="main-post-link-btn"
                                         href={image.mainPostUrl}
                                         target="_blank"
                                     >
-                                        View on X
+                                        GIVE THIS POST SOME&nbsp;
+                                        <svg
+                                            class="icon"
+                                            viewBox="0 0 512 512"
+                                            aria-hidden="true"
+                                            fill="currentColor"
+                                        >
+                                            <use href="#icon-heart" />
+                                        </svg>
                                     </a>
                                 )}
                             </div>
@@ -136,7 +151,7 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
     <!-- photoData should be updated based on its index when a PhotoCard is clicked -->
     <script>
         interface LightboxElements {
-            thumbnailDiv: NodeListOf<HTMLDivElement>;
+            thumbnailDivs: NodeListOf<HTMLDivElement>;
             lightboxDialog: HTMLDialogElement | null;
             prevButton: HTMLButtonElement | null;
             nextButton: HTMLButtonElement | null;
@@ -163,32 +178,59 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
 
             let currentIndex = -1;
 
-            function showImageAtIndex(index: number): void {}
+            function showImageAtIndex(index: number): void {
+                const lightboxImageContainers =
+                    document.querySelectorAll<HTMLElement>(
+                        ".lightbox-image-container",
+                    );
+
+                if (index < 0 || index >= lightboxImageContainers.length)
+                    return;
+
+                for (const container of lightboxImageContainers) {
+                    container.classList.remove("active");
+                }
+
+                const newActiveImage = document.getElementById(
+                    `image-${index}`,
+                );
+                if (newActiveImage) {
+                    newActiveImage.classList.add("active");
+                    currentIndex = index;
+                } else {
+                    console.error(
+                        `Image container with id image-${index} not found.`,
+                    );
+                }
+
+                // Disable prev/next buttons at the ends
+                const prevIndex = currentIndex - 1;
+                const nextIndex = currentIndex + 1;
+                if (prevButton) {
+                    prevButton.disabled = prevIndex <= 0;
+                    prevButton.setAttribute(
+                        "aria-disabled",
+                        String(prevIndex <= 0),
+                    );
+                }
+                if (nextButton) {
+                    nextButton.disabled =
+                        nextIndex >= lightboxImageContainers.length;
+                    nextButton.setAttribute(
+                        "aria-disabled",
+                        String(nextIndex >= lightboxImageContainers.length),
+                    );
+                }
+            }
 
             function openLightbox(thumbnailDiv: HTMLDivElement) {
                 document.body.style.overflow = "hidden";
                 if (!lightboxDialog) return;
 
                 const photoIndex = parseInt(thumbnailDiv.dataset.index || "-1");
-
-                const activeImage = document.getElementById(
-                    `image-${photoIndex}`,
-                );
-                if (!activeImage) {
-                    console.error("Active image not found");
-                    return;
-                }
-                activeImage.classList.add("active");
                 lightboxDialog.showModal();
                 currentIndex = photoIndex;
-                const lightboxImage =
-                    activeImage.querySelector<HTMLImageElement>(
-                        ".lightbox-image",
-                    );
-                if (!lightboxImage) {
-                    console.error("Lightbox image not found");
-                    return;
-                }
+                showImageAtIndex(currentIndex);
             }
 
             function closeDialog() {
@@ -204,13 +246,20 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
             }
 
             function showPreviousImage() {
-                // if (currentIndex <= 0) return;
-                // showImageAtIndex(currentIndex - 1);
+                if (currentIndex > 0) {
+                    const prevIndex = currentIndex - 1;
+                    showImageAtIndex(prevIndex);
+                }
             }
 
             function showNextImage() {
-                // if (currentIndex >= photoCount - 1) return;
-                // showImageAtIndex(currentIndex + 1);
+                if (
+                    currentIndex >= 0 &&
+                    currentIndex < thumbnailDivs.length - 1
+                ) {
+                    const nextIndex = currentIndex + 1;
+                    showImageAtIndex(nextIndex);
+                }
             }
 
             //attach event listeners
@@ -227,6 +276,11 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
             prevButton?.addEventListener("click", () => showPreviousImage());
             nextButton?.addEventListener("click", () => showNextImage());
             closeButton?.addEventListener("click", () => closeDialog());
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeDialog();
+                if (e.key === "ArrowLeft") showPreviousImage();
+                if (e.key === "ArrowRight") showNextImage();
+            });
         });
     </script>
 </div>
