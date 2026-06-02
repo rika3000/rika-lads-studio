@@ -28,7 +28,6 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
                         class="lightbox-image-container"
                         id={`image-${index}`}
                     >
-                        
                         <div class="lightbox-image-wrapper">
                             <img
                                 src={image.src}
@@ -39,36 +38,36 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
                             />
                         </div>
                         <div class="lightbox-description-wrapper">
-                        <div class="lightbox-tags">
-                            <ul>
-                                {image.tags.map((tag) => (
-                                    <li>{tag}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div class="lightbox-info">
-                            <p>{image.name}</p>
-                            <p>{image.dateFormattedString}</p>
-                        </div>
-                        <div class="lightbox-link">
-                            {image.qrPostUrl ? (
-                                <a
-                                    id="selected-photo-link"
-                                    href={image.qrPostUrl}
-                                    target="_blank"
-                                >
-                                    Get QR Code
-                                </a>
-                            ) : (
-                                <a
-                                    id="selected-photo-link"
-                                    href={image.mainPostUrl}
-                                    target="_blank"
-                                >
-                                    View on X
-                                </a>
-                            )}
-                        </div>
+                            <div class="lightbox-tags">
+                                <ul>
+                                    {image.tags.map((tag) => (
+                                        <li>{tag}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div class="lightbox-info">
+                                <p>{image.name}</p>
+                                <p>{image.dateFormattedString}</p>
+                            </div>
+                            <div class="lightbox-link">
+                                {image.qrPostUrl ? (
+                                    <a
+                                        id="selected-photo-link"
+                                        href={image.qrPostUrl}
+                                        target="_blank"
+                                    >
+                                        Get QR Code
+                                    </a>
+                                ) : (
+                                    <a
+                                        id="selected-photo-link"
+                                        href={image.mainPostUrl}
+                                        target="_blank"
+                                    >
+                                        View on X
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     </figure>
                 ))

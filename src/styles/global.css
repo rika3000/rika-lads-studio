@@ -583,7 +583,7 @@ body::after {
     display: flex;
     width: 450px;
     height: 774px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
     border-radius: 0 0 10px 10px;
 
 }
@@ -592,7 +592,7 @@ body::after {
     opacity: 0;
     display: none;
     overflow: clip;
-    background-color: var(--black);
+    background-color: var(--body-bg-color);
     color: var(--white);
     border-radius: inherit;
 
@@ -655,6 +655,17 @@ body::after {
 
 .lightbox-link {
     grid-row-start: 2;
+}
+
+.lightbox-link a {
+    background: linear-gradient(180deg, var(--lightbox-link-btn-bg-top) 0%, var(--lightbox-link-btn-bg-bottom) 100%);
+    border: 2px solid var(--lightbox-link-btn-border-color);
+    color: var(--lightbox-link-btn-text-color);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 
