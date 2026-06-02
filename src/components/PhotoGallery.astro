@@ -4,7 +4,7 @@ import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
 import PhotoLightbox from "./PhotoLightbox.astro";
 
-let selectedPhotoIndex = 0;
+// let selectedPhotoIndex = 0;
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
@@ -17,11 +17,98 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         };
     },
 );
-
-// TODO: add add event listener for all photocards
 ---
 
 <div id="photo-gallery-container">
+    <dialog class="lightbox-dialog">
+        <div class="lightbox-content">
+            {
+                thumbnailList.map((image, index) => (
+                    <figure
+                        class="lightbox-image-container"
+                        id={`image-${index}`}
+                    >
+                        
+                        <div class="lightbox-image-wrapper">
+                            <img
+                                src={image.src}
+                                alt={image.alt}
+                                loading="lazy"
+                                class="lightbox-image"
+                                data-index={index}
+                            />
+                        </div>
+                        <div class="lightbox-description-wrapper">
+                        <div class="lightbox-tags">
+                            <ul>
+                                {image.tags.map((tag) => (
+                                    <li>{tag}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div class="lightbox-info">
+                            <p>{image.name}</p>
+                            <p>{image.dateFormattedString}</p>
+                        </div>
+                        <div class="lightbox-link">
+                            {image.qrPostUrl ? (
+                                <a
+                                    id="selected-photo-link"
+                                    href={image.qrPostUrl}
+                                    target="_blank"
+                                >
+                                    Get QR Code
+                                </a>
+                            ) : (
+                                <a
+                                    id="selected-photo-link"
+                                    href={image.mainPostUrl}
+                                    target="_blank"
+                                >
+                                    View on X
+                                </a>
+                            )}
+                        </div>
+                        </div>
+                    </figure>
+                ))
+            }
+        </div>
+        <!-- Navigation buttons -->
+        <div class="lightbox-prev-div">
+            <button class="prev-button" aria-label="previous slide">
+                <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="currentColor"
+                >
+                    <use href="#chev-left"></use>
+                </svg>
+            </button>
+        </div>
+        <div class="lightbox-next-div">
+            <button class="next-button" aria-label="next slide">
+                <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="currentColor"
+                >
+                    <use href="#chev-right"></use>
+                </svg>
+            </button>
+        </div>
+        <div class="lightbox-close-div">
+            <button class="close-button" aria-label="close button">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <use href="#icon-close"></use>
+                </svg>
+                <span>CLOSE</span>
+            </button>
+        </div>
+    </dialog>
+
     <div class="total">
         {photoGalleryJson.images.length} PHOTO{
             photoGalleryJson.images.length !== 1 ? "S" : ""
@@ -32,7 +119,6 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
             {
                 thumbnailList.map((thumbnail) => (
                     <PhotoCard
-                        client:load
                         index={thumbnail.index}
                         name={thumbnail.name}
                         date={thumbnail.dateFormattedString}
@@ -49,5 +135,99 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         </div>-->
     </section>
     <!-- photoData should be updated based on its index when a PhotoCard is clicked -->
-    <!-- <PhotoLightbox photoData={thumbnailList[selectedPhotoIndex]} /> -->
+    <script>
+        interface LightboxElements {
+            thumbnailDiv: NodeListOf<HTMLDivElement>;
+            lightboxDialog: HTMLDialogElement | null;
+            prevButton: HTMLButtonElement | null;
+            nextButton: HTMLButtonElement | null;
+            closeButton: HTMLButtonElement | null;
+        }
+
+        interface LightboxState {
+            currentIndex: number;
+            // resizeTimeout?: number;
+            // closeDuration: number;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const thumbnailDivs = document.querySelectorAll(".photo-card");
+
+            const lightboxDialog =
+                document.querySelector<HTMLDialogElement>(".lightbox-dialog");
+            const prevButton =
+                document.querySelector<HTMLButtonElement>(".prev-button");
+            const nextButton =
+                document.querySelector<HTMLButtonElement>(".next-button");
+            const closeButton =
+                document.querySelector<HTMLButtonElement>(".close-button");
+
+            let currentIndex = -1;
+
+            function showImageAtIndex(index: number): void {}
+
+            function openLightbox(thumbnailDiv: HTMLDivElement) {
+                document.body.style.overflow = "hidden";
+                if (!lightboxDialog) return;
+
+                const photoIndex = parseInt(thumbnailDiv.dataset.index || "-1");
+
+                const activeImage = document.getElementById(
+                    `image-${photoIndex}`,
+                );
+                if (!activeImage) {
+                    console.error("Active image not found");
+                    return;
+                }
+                activeImage.classList.add("active");
+                lightboxDialog.showModal();
+                currentIndex = photoIndex;
+                const lightboxImage =
+                    activeImage.querySelector<HTMLImageElement>(
+                        ".lightbox-image",
+                    );
+                if (!lightboxImage) {
+                    console.error("Lightbox image not found");
+                    return;
+                }
+            }
+
+            function closeDialog() {
+                document.body.style.overflow = "";
+                if (!lightboxDialog) return;
+                const activeImage = document.querySelector(
+                    ".lightbox-image-container.active",
+                );
+                if (activeImage) {
+                    activeImage.classList.remove("active");
+                }
+                lightboxDialog.close();
+            }
+
+            function showPreviousImage() {
+                // if (currentIndex <= 0) return;
+                // showImageAtIndex(currentIndex - 1);
+            }
+
+            function showNextImage() {
+                // if (currentIndex >= photoCount - 1) return;
+                // showImageAtIndex(currentIndex + 1);
+            }
+
+            //attach event listeners
+            for (const thumbnailDiv of thumbnailDivs) {
+                thumbnailDiv.addEventListener("click", () =>
+                    openLightbox(thumbnailDiv as HTMLDivElement),
+                );
+            }
+            lightboxDialog?.addEventListener("click", (e) => {
+                if (e.target === lightboxDialog) {
+                    closeDialog();
+                }
+            });
+            prevButton?.addEventListener("click", () => showPreviousImage());
+            nextButton?.addEventListener("click", () => showNextImage());
+            closeButton?.addEventListener("click", () => closeDialog());
+        });
+    </script>
 </div>
