@@ -1,5 +1,5 @@
 ---
-    interface Props {
+interface Props {
     index: number;
     name: string;
     date: string;
@@ -8,38 +8,35 @@
     qrPostUrl: string | null;
 }
 
-// TODO: add onclick event to open modal
-
-
 const { index, name, date, characterList, tags, qrPostUrl } = Astro.props;
 ---
 
-    <div
-        class="photo-card"
-        data-index={index}
-        data-characters={characterList.join(",")}
-        data-character-count={characterList.length}
-        data-tags={tags.join(",")}
-        data-has-qr={qrPostUrl !== null}
-    >
-        <img
-            src={`/images/photos/${name}.webp`}
-            alt={name}
-            onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
-            loading="lazy"
-        />
-        {
-            qrPostUrl && (
-                <a href={qrPostUrl} target="_blank" class="qr-badge">
-                    <svg fill="currentColor">
-                        <use href="#icon-qr" />
-                    </svg>
-                    <span>QR</span>
-                </a>
-            )
-        }
-        <div class="card-body">
-            <p class="card-title">{name}</p>
-            <p class="card-date">{date}</p>
-        </div>
+<div
+    class="photo-card"
+    data-index={index}
+    data-characters={characterList.join(",")}
+    data-character-count={characterList.length}
+    data-tags={tags.join(",")}
+    data-has-qr={qrPostUrl !== null}
+>
+    <img
+        src={`/images/photos/${name}.webp`}
+        alt={name}
+        onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
+        loading="lazy"
+    />
+    {
+        qrPostUrl && (
+            <a href={qrPostUrl} target="_blank" class="qr-badge">
+                <svg fill="currentColor">
+                    <use href="#icon-qr" />
+                </svg>
+                <span>QR</span>
+            </a>
+        )
+    }
+    <div class="card-body">
+        <p class="card-title">{name}</p>
+        <p class="card-date">{date}</p>
     </div>
+</div>

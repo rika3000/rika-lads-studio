@@ -1,5 +1,5 @@
 ---
-import photoGalleryJson from "../data/photo_gallery.json";
+import photoGalleryJson from "../data/photo_gallery_test.json";
 import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
 
@@ -8,12 +8,13 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         return {
             index: index,
             src: `/images/photos/${image.name}.webp`,
-            alt: image.name,
             dateFormattedString: formatDate(image.date),
             ...image,
         };
     },
 );
+// get unique characters
+const characters = [...new Set(thumbnailList.flatMap((image) => image.characters))];
 ---
 
 <div id="photo-gallery-container">
@@ -123,11 +124,38 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         </div>
     </dialog>
 
+    <!-- FILTER SECTION -->
+    <section id="filter-section">
+        <!-- Filter content will go here -->
+        <div class="filter-header">
+            <h2>FILTER</h2>
+            <button class="filter-clear" aria-label="clear filter">
+                <span>RESET ALL</span>
+            </button>
+        </div>
+        <div class="filter-content">
+            <div class="filter-category">
+                <h3>CHARACTERS</h3>
+                <!-- Filter content will go here -->
+            </div>
+            <div class="filter-category">
+                <h3>PHOTO MODES</h3>
+                <!-- Filter content will go here -->
+            </div>
+            <div class="filter-category">
+                <h3>TAGS</h3>
+                <!-- Filter content will go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TOTAL PHOTO COUNT -->
     <div class="total">
         {photoGalleryJson.images.length} PHOTO{
             photoGalleryJson.images.length !== 1 ? "S" : ""
         }
     </div>
+    <!-- PHOTO GALLERY SECTION -->
     <section id="photo-gallery-section">
         <div class="grid">
             {

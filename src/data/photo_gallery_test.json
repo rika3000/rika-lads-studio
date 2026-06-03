@@ -1,0 +1,172 @@
+{
+  "characters_order": [
+    "Xavier",
+    "Zayne",
+    "Rafayel",
+    "Sylus",
+    "Caleb",
+    "MC"
+  ],
+  "tags_order": [
+    "F2P Friendly Pose",
+    "Affinity 100+ Pose",
+    "Affinity 150+ Pose",
+    "Affinity 200+ Pose",
+    "Birthday",
+    "Chinese",
+    "Idol",
+    "Myth",
+    "School",
+    "Wedding"
+  ],
+  "images": [
+    {
+      "name": "001",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-08-27",
+      "alt": "MC in a red dress posing under an emerald night sky",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806"
+    },
+    {
+      "name": "002",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-08-27",
+      "alt": "MC in a red dress posing under an emerald night sky",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806"
+    },
+    {
+      "name": "003",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose",
+        "Myth"
+      ],
+      "date": "2025-08-27",
+      "alt": "Blue-haired MC posing in an ornate blue and silver gown",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1960735372264267826"
+    },
+    {
+      "name": "004",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose",
+        "Myth"
+      ],
+      "date": "2025-08-27",
+      "alt": "Blue-haired MC posing in an ornate blue and silver gown",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1959096901896478806",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1960735372264267826"
+    },
+    {
+      "name": "005",
+      "characters": [
+        "Rafayel"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964736069255172363",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1964736069255172363"
+    },
+    {
+      "name": "006",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964736069255172363",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1964736069255172363"
+    },
+    {
+      "name": "007",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159"
+    },
+    {
+      "name": "007a",
+      "characters": [
+        "Xavier"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159",
+      "qrPostUrl": null
+    },
+    {
+      "name": "008",
+      "characters": [
+        "Xavier"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159",
+      "qrPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159"
+    },
+    {
+      "name": "008a",
+      "characters": [
+        "MC"
+      ],
+      "tags": [
+        "F2P Friendly Pose"
+      ],
+      "date": "2025-09-07",
+      "alt": "",
+      "mainPostUrl": "https://x.com/rikaLADSstudio/status/1964827722783523159",
+      "qrPostUrl": null
+    },
+    {
+      "name": "088",
+      "characters": [
+        "MC",
+        "Caleb"
+      ],
+      "tags": [
+        "F2P Friendly Pose",
+        "Affinity 100+ Pose",
+        "Wedding"
+      ],
+      "date": "2026-05-22",
+      "alt": "",
+      "mainPostUrl": "",
+      "qrPostUrl": null
+    }
+  ]
+}

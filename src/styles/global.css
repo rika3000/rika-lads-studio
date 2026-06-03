@@ -30,7 +30,7 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100dvh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -442,6 +442,7 @@ body::after {
     top: 1rem;
     left: 1rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.3rem;
     background-color: var(--qr-badge-bg-color);
@@ -515,18 +516,6 @@ body::after {
 }
 
 /* ── LIGHTBOX ── */
-/* :has(.photo-card[aria-expanded="true"]) #photo-lightbox-inner {
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    background: var(--mobile-navbar-bg-color);
-    height: 100%;
-    z-index: 1001;
-} */
-
 .lightbox-dialog {
     display: none;
     opacity: 0;
@@ -547,24 +536,24 @@ body::after {
     z-index: 50;
     display: grid;
     grid-template-columns: auto 450px auto;
-    grid-template-rows: auto 774px auto;
+    grid-template-rows: repeat(2, auto);
     /* grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr); */
-    gap: 8px;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
 .lightbox-prev-div {
     grid-column-start: 1;
     grid-row-start: 2;
-    margin-right: 2px;
+    margin-right: 10px;
 }
 
 .lightbox-next-div {
     grid-column-start: 3;
     grid-row-start: 2;
-    margin-left: 2px;
+    margin-left: 10px;
 }
 
 .lightbox-close-div {
@@ -574,8 +563,8 @@ body::after {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    margin-bottom: 8px;
 }
-
 
 .lightbox-content {
     grid-column-start: 2;
@@ -665,7 +654,7 @@ body::after {
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
     font-weight: 700;
-    line-height: 2.5rem;
+    line-height: 1;
 }
 
 .lightbox-info #photo-date {
@@ -841,10 +830,7 @@ footer {
         padding: 0 1rem;
     }
 
-    #makeup-tutorials-container .grid,
-    #photo-gallery-container .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
 
 }
 
@@ -865,8 +851,13 @@ footer {
     .hero,
     #makeup-tutorials-container,
     #photo-gallery-container {
-        margin-left: 2rem;
-        margin-right: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #makeup-tutorials-container .grid,
+    #photo-gallery-container .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -882,12 +873,157 @@ footer {
         font-size: 0.9rem;
     }
 
+    .total {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    #makeup-tutorials-container .tutorial-card .card-body {
+        padding: 2rem 0.6rem 0.4rem;
+    }
+
     #makeup-tutorials-container .grid,
     #photo-gallery-container .grid {
-        grid-template-columns: repeat(1, 1fr);
+        gap: 0.4rem;
     }
 
 
+    #makeup-tutorials-container .tutorial-card,
+    #photo-gallery-container .photo-card {
+        margin: 0 auto 10px;
+    }
+
+    #makeup-tutorials-container .card-title {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+    }
+
+    #makeup-tutorials-container .card-date {
+        font-size: 0.6rem;
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+        line-height: 0.7rem;
+    }
+
+    #photo-gallery-container .qr-badge {
+        top: 0.5rem;
+        left: 0.5rem;
+        padding: 0.1rem 0.4rem;
+        gap: 0.2rem;
+    }
+
+    #photo-gallery-container .qr-badge svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    #photo-gallery-container .qr-badge span {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+    }
+
+    .lightbox-dialog[open] {
+        width: 100dvh;
+        height: 100dvh;
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: 0 auto 0;
+    }
+
+    .lightbox-prev-div {
+        display: none;
+        margin: 0;
+    }
+
+    .lightbox-next-div {
+        display: none;
+        margin: 0;
+    }
+
+    .lightbox-close-div {
+
+        /* max-height: 40px; */
+    }
+
+
+    .lightbox-content {
+        width: auto;
+        height: auto;
+        max-height: 100dvh;
+        /* width: auto;
+        height: auto; */
+    }
+
+
+    .lightbox-description-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 0;
+        margin: 14px;
+    }
+
+    .lightbox-tags {
+        margin-bottom: 10px;
+        ul {
+            gap: 4px;
+        }
+    }
+
+    .lightbox-info #photo-name {
+        font-size: 2.6rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .lightbox-link {
+        width: 230px;
+    }
+
+    .lightbox-link a {
+        font-size: 0.7rem;
+    }
+
+    .lightbox-link a svg {
+        width: 14px;
+        height: 14px;
+    }
+
+
+    /*.close-button {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        align-items: center;
+        color: var(--white);
+        font-size: 0.9rem;
+        letter-spacing: 0.3rem;
+        padding: 0 16px;
+    }
+
+    .close-button svg {
+
+        width: 24px;
+        height: 24px;
+    }
+
+    */
 }
 
-/* @media (max-width: 360px) {} */
+@media (max-width: 380px) {
+    .lightbox-tags ul li {
+        font-size: 0.55rem;
+        letter-spacing: 0.05rem;
+        padding: 4px 8px;
+
+    }
+
+    .lightbox-info #photo-name {
+        font-size: 2rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .lightbox-info #photo-date {
+        font-size: 0.8rem;
+    }
+}
