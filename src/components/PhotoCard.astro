@@ -6,9 +6,11 @@ interface Props {
     characterList: string[];
     tags: string[];
     qrPostUrl: string | null;
+    mainPostUrl: string | null;
 }
 
-const { index, name, date, characterList, tags, qrPostUrl } = Astro.props;
+const { index, name, date, characterList, tags, qrPostUrl, mainPostUrl } =
+    Astro.props;
 ---
 
 <div
@@ -19,24 +21,26 @@ const { index, name, date, characterList, tags, qrPostUrl } = Astro.props;
     data-tags={tags.join(",")}
     data-has-qr={qrPostUrl !== null}
 >
-    <img
-        src={`/images/photos/${name}.webp`}
-        alt={name}
-        onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
-        loading="lazy"
-    />
-    {
-        qrPostUrl && (
-            <a href={qrPostUrl} target="_blank" class="qr-badge">
-                <svg fill="currentColor">
-                    <use href="#icon-qr" />
-                </svg>
-                <span>QR</span>
-            </a>
-        )
-    }
-    <div class="card-body">
-        <p class="card-title">{name}</p>
-        <p class="card-date">{date}</p>
-    </div>
+    <a href={`${mainPostUrl}`} target="_blank">
+        <img
+            src={`/images/photos/${name}.webp`}
+            alt={name}
+            onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
+            loading="lazy"
+        />
+        {
+            qrPostUrl && (
+                <a href={qrPostUrl} target="_blank" class="qr-badge">
+                    <svg fill="currentColor">
+                        <use href="#icon-qr" />
+                    </svg>
+                    <span>QR</span>
+                </a>
+            )
+        }
+        <div class="card-body">
+            <p class="card-title">{name}</p>
+            <p class="card-date">{date}</p>
+        </div>
+    </a>
 </div>

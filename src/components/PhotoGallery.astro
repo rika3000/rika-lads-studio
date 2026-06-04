@@ -8,7 +8,7 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         return {
             index: index,
             src: `/images/photos/${image.name}.webp`,
-            dateMonthYearString: formatDate(image.date),
+            dateFormattedString: formatDate(image.date),
             ...image,
         };
     },
@@ -59,10 +59,11 @@ const characters = [
                     <PhotoCard
                         index={thumbnail.index}
                         name={thumbnail.name}
-                        date={thumbnail.dateMonthYearString}
+                        date={thumbnail.dateFormattedString}
                         characterList={thumbnail.characters}
                         tags={thumbnail.tags}
                         qrPostUrl={thumbnail.qrPostUrl}
+                        mainPostUrl={thumbnail.mainPostUrl}
                     />
                 ))
             }
