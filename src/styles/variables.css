@@ -48,6 +48,7 @@
     --qr-badge-text-color: #C5C2D3;
 
     --lightbox-text-color: var(--grey-1);
+    --lightbox-label-text-color: rgba(197, 194, 211, 0.5);
     --lightbox-tag-bg-color: rgba(176, 136, 99, 0.15);
     --lightbox-tag-border-color: rgba(176, 136, 99, 0.3);
     --lightbox-tag-text-color: #B08863;
@@ -92,6 +93,7 @@
     --qr-badge-text-color: #4E4749;
 
     --lightbox-text-color: #2D3742;
+    --lightbox-label-text-color: rgba(45, 55, 66, 0.5);
     --lightbox-tag-bg-color: rgba(87, 67, 58, 0.15);
     --lightbox-tag-border-color: rgba(87, 67, 58, 0.3);
     --lightbox-tag-text-color: #876758;

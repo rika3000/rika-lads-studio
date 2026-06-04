@@ -1,14 +1,15 @@
 ---
 import photoGalleryJson from "../data/photo_gallery_test.json";
 import PhotoCard from "./PhotoCard.astro";
-import { formatDate } from "../utils/helper";
+import { formatDate, formatDateWithDay } from "../utils/helper";
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
         return {
             index: index,
             src: `/images/photos/${image.name}.webp`,
-            dateFormattedString: formatDate(image.date),
+            dateMonthYearString: formatDate(image.date),
+            dateFullString: formatDateWithDay(image.date),
             ...image,
         };
     },
@@ -46,10 +47,16 @@ const characters = [
                                 </ul>
                             </div>
                             <div class="lightbox-info">
-                                <p id="photo-name">{image.name}</p>
-                                <p id="photo-date">
-                                    {image.dateFormattedString}
-                                </p>
+                                <div class="field-content">
+                                    <span>PHOTO NO.</span>
+                                    <p id="photo-name">{image.name}</p>
+                                </div>
+                                <div class="field-content">
+                                    <span>DATE PHOTO UPLOADED</span>
+                                    <p id="photo-date">
+                                        {image.dateFullString}
+                                    </p>
+                                </div>
                             </div>
                             <div class="lightbox-link">
                                 {image.qrPostUrl ? (
@@ -90,6 +97,9 @@ const characters = [
                     </figure>
                 ))
             }
+        </div>
+        <div class="lightbox-counter-div">
+            <span id="lightbox-counter-text">-1 / ${thumbnailList.length}</span>
         </div>
         <!-- Navigation buttons -->
         <div class="lightbox-prev-div">
@@ -165,7 +175,7 @@ const characters = [
                     <PhotoCard
                         index={thumbnail.index}
                         name={thumbnail.name}
-                        date={thumbnail.dateFormattedString}
+                        date={thumbnail.dateMonthYearString}
                         characterList={thumbnail.characters}
                         tags={thumbnail.tags}
                         qrPostUrl={thumbnail.qrPostUrl}
@@ -199,6 +209,10 @@ const characters = [
 
             const lightboxDialog =
                 document.querySelector<HTMLDialogElement>(".lightbox-dialog");
+
+            const lightboxCounterText = document.getElementById(
+                "lightbox-counter-text",
+            ) as HTMLElement;
             const prevButton =
                 document.querySelector<HTMLButtonElement>(".prev-button");
             const nextButton =
@@ -231,6 +245,9 @@ const characters = [
                 if (newActiveImage) {
                     newActiveImage.classList.add("active");
                     currentIndex = index;
+                    if (lightboxCounterText) {
+                        lightboxCounterText.textContent = `${index + 1}/${thumbnailDivs.length}`;
+                    }
                 } else {
                     console.error(
                         `Image container with id image-${index} not found.`,

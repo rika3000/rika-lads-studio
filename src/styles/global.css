@@ -25,6 +25,16 @@ button {
     letter-spacing: inherit;
 }
 
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -516,14 +526,27 @@ body::after {
 }
 
 /* ── LIGHTBOX ── */
+.lightbox-dialog::backdrop {
+    background: #CABBB8;
+    background: linear-gradient(0deg, rgba(202, 187, 184, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+    backdrop-filter: blur(14px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .lightbox-dialog {
     display: none;
     opacity: 0;
     border: none;
     background: none;
+    width: 100%;
+    max-width: none;
     padding: 0;
     overflow: clip;
     margin: auto;
+
 }
 
 .lightbox-dialog[open] {
@@ -534,11 +557,182 @@ body::after {
     right: 0;
     bottom: 0;
     z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.lightbox-counter-div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(-50%);
+}
+
+.lightbox-prev-div {
+    position: absolute;
+    left: 0;
+    top: 50dvh;
+    transform: translateY(-50%);
+}
+
+.lightbox-next-div {
+    position: absolute;
+    right: 0;
+    top: 50dvh;
+    transform: translateY(-50%);
+}
+
+.lightbox-close-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-image-container {
+    opacity: 0;
+    display: none;
+    overflow: clip;
+    background-color: var(--body-bg-color);
+    color: var(--white);
+
+    &.active {
+        display: flex;
+        flex-direction: row;
+        /*column in vertical layout*/
+        opacity: 1;
+    }
+}
+
+.lightbox-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    flex: 1;
+}
+
+.lightbox-image-wrapper img {
+    width: auto;
+    height: 100dvh;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-description-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    margin: 1rem;
+    width: 250px;
+    /* for small devices */
+}
+
+.lightbox-tags {
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    ul li {
+        font-size: 0.65rem;
+        letter-spacing: 0.05rem;
+        text-transform: uppercase;
+        background-color: var(--lightbox-tag-bg-color);
+        border-radius: 1rem;
+        color: var(--lightbox-tag-text-color);
+        padding: 4px 10px;
+        border: 1px solid var(--lightbox-tag-border-color);
+    }
+}
+
+.lightbox-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 2rem 0;
+}
+
+.field-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.field-content span {
+    display: flex;
+    color: var(--lightbox-label-text-color);
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.field-content p {
+    display: flex;
+    color: var(--lightbox-text-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.1rem;
+}
+
+#photo-name {
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+}
+
+/* .lightbox-info #photo-name {
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.lightbox-info #photo-date {
+    font-family: var(--serif);
+    font-weight: 500;
+} */
+
+
+/*
+max image dimension is 800 x 1140px
+ landscape orientation
+ -----------------------
+ if screen is 1140px or less, set dialog height and image height to max vertical dimension
+ if screen is more than 1140px, set dialog width and image width to 1140px
+
+for portrait orientation
+--------------------------
+
+, focus on the description text area min height then set auto height on image
+*/
+
+/*.lightbox-dialog[open] {
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
     display: grid;
     grid-template-columns: auto 450px auto;
     grid-template-rows: repeat(2, auto);
-    /* grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr); */
     justify-content: center;
     align-items: center;
     overflow: visible;
@@ -695,6 +889,33 @@ body::after {
 .lightbox-link a svg {
     width: 16px;
     height: 16px;
+}*/
+
+.lightbox-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: var(--mobile-navbar-bg-color);
+    background-color: var(--mobile-navbar-toggle-btn-bg-color);
+    text-decoration: none;
+    outline: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+}
+
+.lightbox-link a svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+#lightbox-counter-text {
+    color: var(--white);
+    font-size: 0.9rem;
+    letter-spacing: 0.3rem;
+    margin: 0 16px;
 }
 
 
@@ -706,13 +927,9 @@ body::after {
     color: var(--white);
     font-size: 0.9rem;
     letter-spacing: 0.3rem;
-    padding: 0 16px;
+    margin: 0 16px;
 
     &:focus {
-        /* 
-        need to add accessibility support
-        outline: 3px solid var(--white);
-        outline-offset: 3px; */
         outline: none;
     }
 }
@@ -745,24 +962,9 @@ body::after {
     }
 
     &:focus {
-        /* 
-        need to add accessibility support
-        outline: 3px solid var(--white);
-        outline-offset: 3px; */
         outline: none;
     }
 }
-
-.lightbox-dialog::backdrop {
-    background: #CABBB8;
-    background: linear-gradient(0deg, rgba(202, 187, 184, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
-    backdrop-filter: blur(14px);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
 
 
 
@@ -800,6 +1002,26 @@ footer {
 }
 
 /* TODO for photo album columns */
+@media (orientation: portrait) {
+    .lightbox-image-container {
+        &.active {
+            flex-direction: column;
+        }
+    }
+
+    .lightbox-image-wrapper img {
+        width: auto;
+        height: auto;
+        /* max-height: 50dvh; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+
+
 @media (max-width: 1300px) {
 
     .navbar {
@@ -830,6 +1052,20 @@ footer {
     #photo-gallery-container .grid {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .hero .hero-sub {
+        font-size: 1rem;
+    }
+
+    #makeup-tutorials-container .tutorial-card,
+    #photo-gallery-container .photo-card {
+        margin: 0 auto 10px;
+    }
+
+    #photo-gallery-container .qr-badge {
+        top: 0.5rem;
+        left: 0.5rem;
+    }
 }
 
 
@@ -837,9 +1073,6 @@ footer {
     .navbar {
         padding: 0 1rem;
     }
-
-
-
 }
 
 @media (max-width:750px) {
@@ -867,13 +1100,16 @@ footer {
     #photo-gallery-container .grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (max-width:600px) {
-    .hero .hero-sub {
-        font-size: 1rem;
+
+    .next-button svg,
+    .prev-button svg {
+        width: 50px;
+        height: 50px;
     }
 }
+
+@media (max-width:600px) {}
 
 @media (max-width: 480px) {
 
@@ -897,10 +1133,7 @@ footer {
     }
 
 
-    #makeup-tutorials-container .tutorial-card,
-    #photo-gallery-container .photo-card {
-        margin: 0 auto 10px;
-    }
+
 
     #makeup-tutorials-container .card-title {
         font-size: 0.8rem;
@@ -916,8 +1149,6 @@ footer {
     }
 
     #photo-gallery-container .qr-badge {
-        top: 0.5rem;
-        left: 0.5rem;
         padding: 0.1rem 0.4rem;
         gap: 0.2rem;
     }
@@ -933,35 +1164,62 @@ footer {
         letter-spacing: 0.1rem;
     }
 
-    .lightbox-dialog[open] {
+    #photo-gallery-container .card-body {
+        padding: 2rem 0.6rem 0.4rem;
+    }
+
+    #photo-gallery-container .card-title {
+        font-size: 1.4rem;
+        margin-bottom: -0.2rem;
+    }
+
+    #photo-gallery-container .card-date {
+        font-size: 0.7rem;
+    }
+
+
+    /* #photo-gallery-container {
+        margin-bottom: 2rem;
+    } */
+
+    /* .lightbox-dialog[open] {
         width: 100dvh;
         height: 100dvh;
         grid-template-rows: repeat(2, auto);
         grid-template-columns: 0 auto 0;
-    }
+    }*/
 
     .lightbox-prev-div {
         display: none;
-        margin: 0;
     }
 
     .lightbox-next-div {
         display: none;
-        margin: 0;
     }
 
-    .lightbox-close-div {
+    .lightbox-image-container {
+        /* width: 100dvh; */
+        height: 100dvh;
+        /* margin-top: 80px; */
+    }
 
-        /* max-height: 40px; */
+    .lightbox-image-wrapper {
+        flex-grow: 1;
+        /* height: calc(100dvh - 280px);
+        width: auto; */
+    }
+
+    .lightbox-description-wrapper {
+        min-height: 200px;
     }
 
 
-    .lightbox-content {
+
+
+    /*.lightbox-content {
         width: auto;
         height: auto;
         max-height: 100dvh;
-        /* width: auto;
-        height: auto; */
     }
 
 
@@ -996,31 +1254,12 @@ footer {
     .lightbox-link a svg {
         width: 14px;
         height: 14px;
-    }
-
-
-    /*.close-button {
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-        align-items: center;
-        color: var(--white);
-        font-size: 0.9rem;
-        letter-spacing: 0.3rem;
-        padding: 0 16px;
-    }
-
-    .close-button svg {
-
-        width: 24px;
-        height: 24px;
-    }
-
-    */
+    } */
 }
 
+
 @media (max-width: 380px) {
-    .lightbox-tags ul li {
+    /* .lightbox-tags ul li {
         font-size: 0.55rem;
         letter-spacing: 0.05rem;
         padding: 4px 8px;
@@ -1034,5 +1273,5 @@ footer {
 
     .lightbox-info #photo-date {
         font-size: 0.8rem;
-    }
+    } */
 }

@@ -9,3 +9,16 @@ export const formatDate = (dateString: string) => {
         year: "numeric",
     });
 };
+
+// Convert date from "YYYY-MM-DD" to "MON DD, YYYY" format
+export const formatDateWithDay = (dateString: string) => {
+    const date = new Date(dateString);
+    if (date === null) {
+        return "";
+    }
+    return (date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+    })).toUpperCase();
+};
