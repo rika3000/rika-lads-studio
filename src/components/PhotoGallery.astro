@@ -13,10 +13,21 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
         };
     },
 );
-// get unique characters
+// get unique characters and have it sorted by characters_order
 const characters = [
     ...new Set(thumbnailList.flatMap((image) => image.characters)),
-];
+].sort(
+    (a, b) =>
+        photoGalleryJson.characters_order.indexOf(a) -
+        photoGalleryJson.characters_order.indexOf(b),
+);
+
+// get unique tags and have it sorted by tags_order
+const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
+    (a, b) =>
+        photoGalleryJson.tags_order.indexOf(a) -
+        photoGalleryJson.tags_order.indexOf(b),
+);
 ---
 
 <div id="photo-gallery-container">
@@ -24,33 +35,64 @@ const characters = [
     <section id="filter-section">
         <!-- Filter content will go here -->
         <div class="filter-header">
-            <h2>FILTER</h2>
-            <button class="filter-clear" aria-label="clear filter">
+            <h2>Filter</h2>
+            <button id="filter-clear-btn" aria-label="clear filter">
                 <span>RESET ALL</span>
             </button>
         </div>
         <div class="filter-content">
-            <div class="filter-category">
-                <h3>CHARACTERS</h3>
-                <!-- Filter content will go here -->
+            <div class="filter-group">
+                <span class="filter-label">CHARACTERS</span>
+                <div class="filter-pills" id="character-filters">
+                    <button class="pill active" data-character-all
+                        >All Characters</button
+                    >
+                    {
+                        characters.map((character) => (
+                            <button class="pill" data-character={character}>
+                                {character}
+                            </button>
+                        ))
+                    }
+                </div>
             </div>
-            <div class="filter-category">
-                <h3>PHOTO MODES</h3>
-                <!-- Filter content will go here -->
+            <div class="filter-group">
+                <span class="filter-label">PHOTO MODES</span>
+                <div class="filter-pills" id="photo-mode-filters">
+                    <button class="pill active" data-pm-all>All Modes</button>
+                    <button class="pill" data-pm="solo">Solo</button>
+                    <button class="pill" data-pm="duo">Duo</button>
+                    <button class="pill" data-pm="others">Others</button>
+                </div>
             </div>
-            <div class="filter-category">
-                <h3>TAGS</h3>
-                <!-- Filter content will go here -->
+            <div class="filter-group">
+                <span class="filter-label">TAGS</span>
+                <div class="filter-pills" id="tag-filters">
+                    <button class="pill active" data-tag-all>All Tags</button>
+                    <button class="pill pill-qr" data-qr-filter>
+                        <svg
+                            class="icon"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <use href="#icon-qr"></use>
+                        </svg>
+                        Has QR Code
+                    </button>
+                    {
+                        tags.map((tag) => (
+                            <button class="pill" data-tag={tag}>
+                                {tag}
+                            </button>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </section>
 
     <!-- TOTAL PHOTO COUNT -->
-    <div class="total">
-        {photoGalleryJson.images.length} PHOTO{
-            photoGalleryJson.images.length !== 1 ? "S" : ""
-        }
-    </div>
+    <div id="total-photo-count" class="total"></div>
     <!-- PHOTO GALLERY SECTION -->
     <section id="photo-gallery-section">
         <div class="grid">
@@ -74,5 +116,5 @@ const characters = [
         </div>-->
     </section>
     <!-- photoData should be updated based on its index when a PhotoCard is clicked -->
-    <script></script>
+    <script src="../scripts/gallery.ts"></script>
 </div>

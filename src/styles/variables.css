@@ -47,6 +47,24 @@
     --qr-badge-bg-color: rgba(26, 20, 14, 0.8);
     --qr-badge-text-color: #C5C2D3;
 
+    --filter-box-bg-color: rgba(132, 117, 113, 0.15);
+    --filter-box-border-color: rgba(242, 242, 242, 0.4);
+    --filter-text-color: var(--grey-1);
+    /* --filter-heading-color: var(--grey-1);
+    --filter-reset-btn-text-color: var(--grey-1);
+    --filter-reset-btn-border-color: var(--grey-1);*/
+    --filter-reset-btn-bg-color-hover: rgba(242, 242, 242, 0.2);
+    --filter-label-text-color: var(--grey-1);
+    --filter-tag-bg-color: rgba(26, 20, 14, 0.1);
+    --filter-tag-text-color: var(--grey-1);
+    --filter-tag-border-color: rgba(197, 194, 211, 0.2);
+    --filter-tag-bg-color-hover: rgba(78, 71, 73, 0.25);
+    --filter-tag-text-color-hover: var(--grey-1);
+    --filter-tag-border-color-hover: rgba(197, 194, 211, 0.5);
+    --filter-tag-bg-color-active: rgba(242, 242, 242, 0.7);
+    --filter-tag-text-color-active: var(--black);
+    --filter-tag-border-color-active: var(--white);
+
     /* --footer-bg-color: #040A12; */
     --footer-border-color: rgba(242, 242, 242, 0.1);
     --footer-text-color: #C4C1D2;
@@ -80,6 +98,25 @@
 
     --qr-badge-bg-color: rgba(242, 242, 242, 0.8);
     --qr-badge-text-color: #4E4749;
+
+    --filter-box-bg-color: rgba(132, 117, 113, 0.15);
+    --filter-box-border-color: rgba(242, 242, 242, 0.8);
+    --filter-text-color: var(--grey-3);
+    /* --filter-heading-color: var(--grey-3);
+    --filter-reset-btn-text-color: var(--grey-3);
+    --filter-reset-btn-border-color: var(--grey-3)*/
+    --filter-reset-btn-bg-color-hover: rgba(242, 242, 242, 0.6);
+    ;
+    --filter-label-text-color: var(--grey-2);
+    --filter-tag-bg-color: rgba(127, 124, 135, 0.1);
+    --filter-tag-text-color: var(--grey-3);
+    --filter-tag-border-color: rgba(78, 71, 73, 0.2);
+    --filter-tag-bg-color-hover: rgba(127, 124, 135, 0.25);
+    --filter-tag-text-color-hover: var(--grey-3);
+    --filter-tag-border-color-hover: rgba(78, 71, 73, 0.5);
+    --filter-tag-bg-color-active: rgba(242, 242, 242, 0.7);
+    --filter-tag-text-color-active: var(--grey-3);
+    --filter-tag-border-color-active: var(--grey-3);
 
     /* --footer-bg-color: transparent; */
     --footer-border-color: rgba(78, 71, 73, 0.1);
