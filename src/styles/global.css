@@ -568,7 +568,7 @@ body {
     text-transform: uppercase;
     color: var(--count-text-color);
     line-height: 1;
-    border: 3px solid var(--count-text-color);
+    border: 3px solid var(--show-hide-filter-btn-border-color);
     border-radius: 50px;
     padding: 8px 20px;
 }
@@ -577,6 +577,11 @@ body {
 #hide-filters-btn svg {
     width: 26px;
     height: 26px;
+}
+
+#show-filters-btn:hover,
+#hide-filters-btn:hover {
+    border-color: var(--count-text-color);
 }
 
 :has(#show-filters-btn[aria-expanded="false"]) #show-filters-btn,

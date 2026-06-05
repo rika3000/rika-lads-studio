@@ -34,6 +34,7 @@
     --hero-text-color: rgba(245, 242, 237, 0.8);
 
     --count-text-color: rgba(245, 242, 237, 0.7);
+    --show-hide-filter-btn-border-color: rgba(245, 242, 242, 0.2);
 
     --qr-badge-bg-color: rgba(26, 20, 14, 0.8);
     --qr-badge-text-color: #C5C2D3;
@@ -78,6 +79,7 @@
     --hero-text-color: #4E4749;
 
     --count-text-color: rgba(78, 71, 73, 0.8);
+    --show-hide-filter-btn-border-color: rgba(78, 71, 73, 0.2);
 
     --qr-badge-bg-color: rgba(242, 242, 242, 0.8);
     --qr-badge-text-color: #4E4749;
