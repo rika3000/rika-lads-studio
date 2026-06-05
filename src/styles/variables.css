@@ -22,21 +22,16 @@
     --body-text-color: var(--white);
 
     --navbar-bg-color: rgba(0, 0, 0, 0.5);
-    --navbar-border-color: rgba(242, 242, 242, 0.4);
-    --navbar-link-color: #C4C1D2;
-    --navbar-link-color-hover: var(--white);
-    --navbar-link-color-active: var(--white);
-    --navbar-link-bg-color-active: rgba(176, 136, 99, 0.8);
-    --navbar-link-bg-color-active-hover: #9E9088;
-    --navbar-social-link-color-hover: var(--white);
-
+    --navbar-border-color: rgba(242, 242, 242, 0.3);
+    --navbar-link-color: var(--white);
+    --navbar-link-color-hover: #C4C1D2;
+    --navbar-link-underline-color-active: rgba(245, 242, 237, 0.5);
     --mobile-navbar-bg-color: #040A12;
     --mobile-navbar-toggle-btn-bg-color: #F2F2F2;
-    --mobile-navbar-link-color-active: var(--white);
 
     --hero-heading-color: rgba(245, 242, 237, 0.8);
-    --hero-eyebrow-text-color: rgba(197, 194, 211, 0.4);
-    --hero-text-color: rgba(245, 242, 237, 0.6);
+    --hero-eyebrow-text-color: rgba(197, 194, 211, 0.5);
+    --hero-text-color: rgba(245, 242, 237, 0.8);
 
     --count-text-color: rgba(245, 242, 237, 0.7);
 
@@ -72,16 +67,11 @@
     /* rgb(170, 100, 24) */
     --navbar-bg-color: rgba(242, 242, 242, 0.8);
     --navbar-border-color: var(--white);
-    --navbar-link-color: #7F7C87;
-    --navbar-link-color-hover: #2D3742;
-    --navbar-link-color-active: #2D3742;
-    --navbar-link-bg-color-active: rgba(45, 55, 66, 0.8);
-    --navbar-link-bg-color-active-hover: #9E9088;
-    --navbar-social-link-color-hover: #4E4749;
-
+    --navbar-link-color: #4E4749;
+    --navbar-link-color-hover: #7F7C87;
+    --navbar-link-underline-color-active: rgba(135, 103, 88, 0.5);
     --mobile-navbar-bg-color: #E3E1DD;
     --mobile-navbar-toggle-btn-bg-color: #4E4749;
-    --mobile-navbar-link-color-active: var(--white);
 
     --hero-heading-color: #4E4749;
     --hero-eyebrow-text-color: rgba(135, 103, 88, 0.4);

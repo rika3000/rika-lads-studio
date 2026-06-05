@@ -61,11 +61,12 @@ body {
     flex-direction: column;
     min-height: 100dvh;
     overflow-x: hidden;
+    padding: 0 calc((100% - var(--max-width-page))/2);
 }
 
 /* ── HEADER ── */
 .navbar {
-    height: 70px;
+    height: 60px;
     position: fixed;
     margin: 0;
     top: 0;
@@ -79,10 +80,8 @@ body {
     border-bottom: 1px solid var(--navbar-border-color);
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
     z-index: 100;
-    /*display: flex;*/
     justify-content: space-between;
     align-items: center;
-    /*width: 100%;*/
 }
 
 .nav-links,
@@ -110,34 +109,21 @@ body {
     color: var(--navbar-link-color);
     transition: color 0.3s ease;
     margin: 0 2rem;
+    border-bottom: 4px solid transparent;
 }
 
-.navbar .nav-links li a:hover,
-#navigation-mobile-menu .nav-links li a:hover,
+.navbar .nav-links li a:not(.active):hover,
+#navigation-mobile-menu .nav-links li a:not(.active):hover,
 .nav-theme-toggle a:hover,
 #navigation-menu-btn:hover {
     color: var(--navbar-link-color-hover);
 }
 
-.navbar .nav-links li a.active {
-    color: var(--navbar-link-color-active);
-    border-bottom: 4px solid var(--navbar-link-color-active);
-}
-
+.navbar .nav-links li a.active,
 #navigation-mobile-menu .nav-links li a.active {
-    color: var(--mobile-navbar-link-color-active);
-    background-color: var(--navbar-link-bg-color-active);
+    border-color: var(--navbar-link-underline-color-active);
 }
 
-.navbar .nav-links li a.active:hover {
-    color: var(--navbar-link-color-active);
-}
-
-#navigation-mobile-menu .nav-links li a.active:hover {
-    color: var(--navbar-link-color-active);
-    background-color: var(--navbar-link-bg-color-active-hover);
-
-}
 
 .nav-theme-toggle a {
     cursor: pointer;
@@ -159,10 +145,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-x:hover {
-    color: var(--navbar-social-link-color-hover);
-}
-
 .nav-x>svg {
     width: 16px;
     height: 16px;
@@ -181,7 +163,8 @@ body {
 }
 
 .nav-theme-toggle .icon,
-#navigation-menu-btn .icon {
+#navigation-menu-btn .icon,
+#navigation-close-btn .icon {
     width: 28px;
     height: 28px;
 }
@@ -210,7 +193,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 100%;
+    min-height: 100dvh;
     background: var(--mobile-navbar-bg-color);
     font-size: 1.1rem;
     letter-spacing: 0.2rem;
@@ -234,11 +217,6 @@ body {
     padding: 1.2rem;
 }
 
-#navigation-close-btn .icon {
-    width: 24px;
-    height: 24px;
-}
-
 #navigation-close-btn span {
     color: var(--mobile-navbar-toggle-btn-bg-color);
     margin-left: 0.4rem;
@@ -248,6 +226,7 @@ body {
 #navigation-mobile-menu .nav-links {
     flex-direction: column;
     flex-grow: 1;
+    justify-content: flex-start;
 }
 
 #navigation-mobile-menu .nav-links li {
@@ -257,13 +236,12 @@ body {
 
 #navigation-mobile-menu .nav-links li a {
     display: flex;
-    width: 100%;
-    justify-content: center;
     text-decoration: none;
     font-weight: 500;
     color: var(--navbar-link-color);
     transition: color 0.3s ease;
-    padding: 2rem 1.2rem;
+    margin: 1.6rem 2rem 0;
+    border-bottom: 3px solid transparent;
 }
 
 .mobile-dark-light-toggle-btn {
@@ -272,7 +250,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 1.6rem 3rem;
+    padding: 1rem 3rem;
     color: var(--mobile-navbar-bg-color);
     background-color: var(--mobile-navbar-toggle-btn-bg-color);
 }
@@ -302,7 +280,7 @@ body {
     flex-direction: column;
     z-index: 1;
     text-align: center;
-    margin: 160px calc((100% - var(--max-width-page))/2) 6rem;
+    margin: 160px 0 6rem;
 }
 
 .hero .hero-eyebrow {
@@ -370,14 +348,14 @@ body {
 }
 
 #lightbox.open {
-    opacity: 1;
+    opacity: 0.8;
     pointer-events: all;
 }
 
 /* ── MAKEUP TUTORIALS CONTENT ── */
 #makeup-tutorials-container,
 #photo-gallery-container {
-    margin: 0 calc((100% - var(--max-width-page))/2) 3rem;
+    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
 }
@@ -463,7 +441,7 @@ body {
 
 #makeup-tutorials-container .card-instruction {
     font-size: 0.7rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.1rem;
     color: var(--card-subtext-color);
     text-transform: uppercase;
@@ -531,7 +509,6 @@ body {
     backdrop-filter: blur(5px);
     mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 50%);
     flex-direction: column;
-    /* justify-content: flex-end; */
     padding: 2rem 1rem 0.6rem;
     /* Ensure content sits above the blur */
     z-index: 2;
@@ -584,21 +561,22 @@ body {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.2rem;
+    line-height: 1;
 }
 
 #filter-clear-btn {
-    background: none;
+    background-color: transparent;
     border: 2px solid var(--filter-text-color);
     font-size: 0.9rem;
     letter-spacing: 0.2rem;
     line-height: 1;
     padding: 8px 20px;
     border-radius: 20px;
-    transition: background 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 #filter-clear-btn:hover {
-    background: var(--filter-reset-btn-bg-color-hover);
+    background-color: var(--filter-reset-btn-bg-color-hover);
 }
 
 .filter-group {
@@ -712,24 +690,20 @@ footer {
 
 
 @media (max-width: 1300px) {
-
     .navbar {
         padding: 0 2rem;
     }
 
-    .navbar .nav-links li a {
-        margin: 0 1rem;
+    .navbar .nav-links {
+        display: none;
     }
 
-    .nav-theme-toggle a {
-        margin-left: 1rem;
+    #navigation-menu-btn {
+        display: flex;
     }
 
-    .hero,
-    #makeup-tutorials-container,
-    #photo-gallery-container {
-        margin-left: 3rem;
-        margin-right: 3rem;
+    .body-wrapper {
+        padding: 0 1rem;
     }
 
     #makeup-tutorials-container .grid,
@@ -761,9 +735,8 @@ footer {
 
 
 @media (max-width:900px) {
-    .navbar {
-        padding: 0 1rem;
-    }
+
+
 
     .hero {
         margin-top: 120px;
@@ -780,13 +753,6 @@ footer {
 }
 
 @media (max-width:750px) {
-    .navbar .nav-links {
-        display: none;
-    }
-
-    #navigation-menu-btn {
-        display: flex;
-    }
 
     .hero,
     #makeup-tutorials-container,
@@ -845,7 +811,10 @@ footer {
         letter-spacing: 0.2rem;
     }
 
-    #makeup-tutorials-container .grid,
+    #makeup-tutorials-container .grid {
+        gap: 0.6rem;
+    }
+
     #photo-gallery-container .grid {
         gap: 0.4rem;
     }
@@ -854,14 +823,11 @@ footer {
         font-size: 0.8rem;
         font-weight: 500;
         letter-spacing: 0.1rem;
-        margin-bottom: 0.05rem;
     }
 
     #makeup-tutorials-container .card-instruction {
         font-size: 0.5rem;
-        font-weight: 400;
         letter-spacing: 0.1rem;
-        line-height: 1;
     }
 
     #photo-gallery-container .qr-badge {
