@@ -1,3 +1,5 @@
+import { PHOTO_MODE_ALL } from "../lib/constants";
+
 interface GalleryElements {
     allPhotos: NodeListOf<HTMLDivElement>;
     totalPhotoCountTxt: HTMLElement | null;
@@ -20,7 +22,7 @@ interface GalleryState {
     filteredPhotoIndices: Set<number>;
 }
 
-function initializeVariables() {
+function initVariables() {
     const elements: GalleryElements = {
         allPhotos: document.querySelectorAll(".photo-card"),
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
@@ -39,7 +41,7 @@ function initializeVariables() {
         activeCharacters: new Set(),
         activeTags: new Set(),
         activeHasQR: false,
-        activePhotoMode: "all",
+        activePhotoMode: PHOTO_MODE_ALL,
         filteredPhotoIndices: new Set(
             Array.from(elements.allPhotos).map((_, index) => index),
         ),
@@ -74,7 +76,7 @@ function renderFilters(state: GalleryState, elements: GalleryElements) {
     });
 
     // Photo mode filter
-    elements.allPhotoModesBtn?.classList.toggle("active", state.activePhotoMode === "all");
+    elements.allPhotoModesBtn?.classList.toggle("active", state.activePhotoMode === PHOTO_MODE_ALL);
 
     elements.photoModeFilterBtns.forEach((btn) => {
         const photoMode: string = btn.getAttribute("data-pm") || "";
@@ -108,7 +110,7 @@ function applyFilters(state: GalleryState, elements: GalleryElements) {
             characters.some((c: string) => state.activeCharacters.has(c));
 
         const photoModeMatch =
-            state.activePhotoMode === "all" ||
+            state.activePhotoMode === PHOTO_MODE_ALL ||
             (state.activePhotoMode === "solo" && characters.length === 1) ||
             (state.activePhotoMode === "duo" && characters.length === 2) ||
             (state.activePhotoMode === "others" && characters.length > 2);
@@ -121,14 +123,13 @@ function applyFilters(state: GalleryState, elements: GalleryElements) {
             state.filteredPhotoIndices.add(parseInt(photo.dataset.index || "-1"));
         }
     });
-    console.log("filteredPhotoIndices", state.filteredPhotoIndices);
 }
 
 function clearAllFilters(state: GalleryState, elements: GalleryElements) {
     state.activeCharacters.clear();
     state.activeTags.clear();
     state.activeHasQR = false;
-    state.activePhotoMode = "all";
+    state.activePhotoMode = PHOTO_MODE_ALL;
     renderFilters(state, elements);
     applyFilters(state, elements);
 }
@@ -188,9 +189,8 @@ function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
     });
 
     // All photo modes filter buttons
-
     elements.allPhotoModesBtn?.addEventListener("click", () => {
-        state.activePhotoMode = "all";
+        state.activePhotoMode = PHOTO_MODE_ALL;
         filterAndRenderGallery(state, elements);
     });
 
@@ -199,7 +199,7 @@ function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
             const selectedPhotoMode: string | null = btn.getAttribute("data-pm");
             if (!selectedPhotoMode) return;
 
-            state.activePhotoMode = (state.activePhotoMode === selectedPhotoMode) ? "all" : selectedPhotoMode;
+            state.activePhotoMode = (state.activePhotoMode === selectedPhotoMode) ? PHOTO_MODE_ALL : selectedPhotoMode;
             filterAndRenderGallery(state, elements);
         });
     });
@@ -233,7 +233,7 @@ function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const { elements, state } = initializeVariables();
+    const { elements, state } = initVariables();
     clearAllFilters(state, elements);
     addBtnEventListeners(elements, state);
     renderGallery(state, elements);

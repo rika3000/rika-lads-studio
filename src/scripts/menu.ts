@@ -1,6 +1,5 @@
 import { LIGHT_THEME, DARK_THEME, SWITCH_TO_LIGHT_MODE_TXT, SWITCH_TO_DARK_MODE_TXT } from '../lib/constants'
 const themeToggleBtn = document.getElementById('theme-toggle-btn') as HTMLFormElement;
-const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle-btn') as HTMLFormElement;
 const mobileLightModeBtn = document.getElementById('mobile-light-mode-btn') as HTMLFormElement;
 const mobileDarkModeBtn = document.getElementById('mobile-dark-mode-btn') as HTMLFormElement;
 const lightModeIcon = document.getElementById('theme-icon-sun') as HTMLFormElement;
@@ -50,7 +49,6 @@ function toggleDarkLightTheme() {
 
 
 themeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
-// mobileThemeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
 mobileDarkModeBtn?.addEventListener('click', toggleDarkLightTheme);
 mobileLightModeBtn?.addEventListener('click', toggleDarkLightTheme);
 navigationMenuBtn?.addEventListener('click', toggleMobileNavigationMenu);
@@ -85,7 +83,6 @@ lightbox?.addEventListener('click', () => {
         closeLightbox();
     }
 });
-
 
 
 /* ════════════════════════════════════════════
