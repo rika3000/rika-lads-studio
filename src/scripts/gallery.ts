@@ -74,6 +74,8 @@ function renderFilters(state: GalleryState, elements: GalleryElements) {
     });
 
     // Photo mode filter
+    elements.allPhotoModesBtn?.classList.toggle("active", state.activePhotoMode === "all");
+
     elements.photoModeFilterBtns.forEach((btn) => {
         const photoMode: string = btn.getAttribute("data-pm") || "";
         btn.classList.toggle("active", state.activePhotoMode === photoMode);

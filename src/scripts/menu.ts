@@ -30,7 +30,7 @@ function toggleMobileNavigationMenu() {
     navigationMenuBtn.setAttribute('aria-expanded', `${!isExpanded}`);
     navigationCloseBtn.setAttribute('aria-expanded', `${!isExpanded}`);
     if (!isExpanded) {
-        openLightbox(null);
+        openLightbox();
     } else {
         closeLightbox();
     }
@@ -68,9 +68,7 @@ window.addEventListener('resize', () => {
 /* ════════════════════════════════════════════
    LIGHTBOX
    ════════════════════════════════════════════ */
-function openLightbox(idx: any) {
-    const currentLbIndex = idx;
-    //updateLightbox();
+function openLightbox() {
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
 }
