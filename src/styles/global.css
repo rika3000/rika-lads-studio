@@ -360,13 +360,26 @@ body {
     flex-direction: column;
 }
 
+#makeup-tutorials-toolbar,
+#photo-gallery-toolbar {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1.6rem;
+}
+
+#makeup-tutorials-toolbar {
+    justify-content: flex-end;
+}
+
 .total {
     font-size: 1.2rem;
     letter-spacing: 0.3rem;
-    margin-bottom: 1.6rem;
     text-align: right;
     font-weight: 500;
     color: var(--count-text-color);
+    line-height: 1;
+    border: 3px solid transparent;
+    padding: 8px 0;
 }
 
 .grid {
@@ -392,7 +405,6 @@ body {
     display: flex;
     width: 100%;
 }
-
 
 #makeup-tutorials-container .tutorial-card img,
 #photo-gallery-container .photo-card img {
@@ -539,9 +551,68 @@ body {
     text-transform: uppercase;
 }
 
+/* ── PHOTO GALLERY - TOOLBAR ── */
+
+#photo-gallery-toolbar {
+    justify-content: space-between;
+}
+
+#show-filters-btn,
+#hide-filters-btn {
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--count-text-color);
+    line-height: 1;
+    border: 3px solid var(--count-text-color);
+    border-radius: 50px;
+    padding: 8px 20px;
+}
+
+#show-filters-btn svg,
+#hide-filters-btn svg {
+    width: 26px;
+    height: 26px;
+}
+
+:has(#show-filters-btn[aria-expanded="false"]) #show-filters-btn,
+:has(#show-filters-btn[aria-expanded="true"]) #hide-filters-btn {
+    display: flex;
+}
+
+
+:has(#show-filters-btn[aria-expanded="false"]) #hide-filters-btn,
+:has(#show-filters-btn[aria-expanded="true"]) #show-filters-btn {
+    display: none;
+}
+
+
+:has(#show-filters-btn[aria-expanded="true"]) #filter-section {
+    display: flex;
+    /* grid-template-rows: 1fr; */
+}
+
+:has(#show-filters-btn[aria-expanded="false"]) #filter-section {
+    display: none;
+    /* min-height: 0; */
+}
+
+
+
 /* ── PHOTO GALLERY - FILTER ── */
 
 #filter-section {
+    /* display: grid;
+    grid-template-rows: repeat(2, 0px);
+    grid-auto-rows: 0;
+    overflow: hidden;
+    transition: grid-template-rows 0.3s ease; */
+    display: flex;
+    flex-direction: column;
     background-color: var(--filter-box-bg-color);
     border: 3px solid var(--filter-box-border-color);
     border-radius: 8px;
@@ -572,7 +643,7 @@ body {
     line-height: 1;
     padding: 8px 20px;
     border-radius: 20px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 #filter-clear-btn:hover {
@@ -612,7 +683,7 @@ body {
     font-size: 1rem;
     letter-spacing: 0.04rem;
     line-height: 1;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .filter-pills .pill:hover {
@@ -805,10 +876,23 @@ footer {
         font-size: 0.9rem;
     }
 
-    .total {
+    .total,
+    #show-filters-btn,
+    #hide-filters-btn {
         font-size: 0.9rem;
-        margin-bottom: 1rem;
         letter-spacing: 0.2rem;
+    }
+
+    #show-filters-btn,
+    #hide-filters-btn {
+        border-width: 2px;
+        padding: 6px 12px;
+    }
+
+    #show-filters-btn svg,
+    #hide-filters-btn svg {
+        width: 18px;
+        height: 18px;
     }
 
     #makeup-tutorials-container .grid {

@@ -14,11 +14,13 @@ const thumbnailList = Object.values(makeupTutorialsJson.tutorials).map(
 ---
 
 <div id="makeup-tutorials-container">
-    <div class="total">
-        {makeupTutorialsJson.tutorials.length} TUTORIAL{
-            makeupTutorialsJson.tutorials.length !== 1 ? "S" : ""
-        }
-    </div>
+    <section id="makeup-tutorials-toolbar">
+        <div class="total">
+            {makeupTutorialsJson.tutorials.length} TUTORIAL{
+                makeupTutorialsJson.tutorials.length !== 1 ? "S" : ""
+            }
+        </div>
+    </section>
     <section id="makeup-tutorials-section">
         <div class="grid">
             {

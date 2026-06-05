@@ -30,10 +30,32 @@ const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
 ---
 
 <div id="photo-gallery-container">
+    <section id="photo-gallery-toolbar">
+        <div class="toolbar-left">
+            <button
+                id="show-filters-btn"
+                aria-expanded="false"
+                aria-controls="filter-section"
+            >
+                <svg class="icon" aria-hidden="true" fill="currentColor">
+                    <use href="#icon-show-filters"></use>
+                </svg>
+                Show Filters
+            </button>
+            <button
+                id="hide-filters-btn"
+                aria-expanded="false"
+                aria-controls="filter-section"
+            >
+                <svg class="icon" aria-hidden="true" fill="currentColor">
+                    <use href="#icon-hide-filters"></use>
+                </svg>
+                Hide Filters
+            </button>
+        </div>
+        <div id="total-photo-count" class="total">CALCULATING...</div>
+    </section>
     <PhotoGalleryFilter characters={characters} tags={tags} />
-
-    <!-- TOTAL PHOTO COUNT -->
-    <div id="total-photo-count" class="total"></div>
     <!-- PHOTO GALLERY SECTION -->
     <section id="photo-gallery-section">
         <div class="grid">

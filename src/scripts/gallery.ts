@@ -5,6 +5,9 @@ interface GalleryElements {
     totalPhotoCountTxt: HTMLElement | null;
     emptyState: HTMLElement | null;
     filterClearBtn: HTMLButtonElement | null;
+    showFiltersBtn: HTMLButtonElement | null;
+    hideFiltersBtn: HTMLButtonElement | null;
+    filterSection: HTMLElement | null;
     characterFilterBtns: NodeListOf<HTMLButtonElement>;
     photoModeFilterBtns: NodeListOf<HTMLButtonElement>;
     tagFilterBtns: NodeListOf<HTMLButtonElement>;
@@ -28,6 +31,9 @@ function initVariables() {
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
         emptyState: document.getElementById("gallery-empty-state"),
         filterClearBtn: document.getElementById("filter-clear-btn") as HTMLButtonElement | null,
+        showFiltersBtn: document.getElementById("show-filters-btn") as HTMLButtonElement | null,
+        hideFiltersBtn: document.getElementById("hide-filters-btn") as HTMLButtonElement | null,
+        filterSection: document.getElementById("filter-section") as HTMLElement | null,
         characterFilterBtns: document.querySelectorAll("#character-filters button.pill:not([data-character-all])") as NodeListOf<HTMLButtonElement>,
         photoModeFilterBtns: document.querySelectorAll("#photo-mode-filters button.pill:not([data-pm-all])") as NodeListOf<HTMLButtonElement>,
         tagFilterBtns: document.querySelectorAll("#tag-filters button.pill:not([data-tag-all]):not([data-qr-filter])") as NodeListOf<HTMLButtonElement>,
@@ -47,6 +53,12 @@ function initVariables() {
         ),
     };
     return { elements, state };
+}
+
+function toggleFilterSection(elements: GalleryElements) {
+    const isExpanded = elements.showFiltersBtn?.getAttribute('aria-expanded') === 'true';
+    elements.showFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
+    elements.hideFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
 }
 
 function toggleCharacter(activeCharacters: Set<string>, characterName: string) {
@@ -172,6 +184,9 @@ function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) 
 }
 
 function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
+    elements.showFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
+    elements.hideFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
+
     // All characters filter buttons
     elements.allCharactersBtn?.addEventListener("click", () => {
         state.activeCharacters.clear();
