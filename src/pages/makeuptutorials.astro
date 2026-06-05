@@ -2,18 +2,24 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { MAKEUP_TUTORIALS_TITLE } from "../lib/constants";
 import TutorialList from "../components/TutorialList.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout pageTitle={MAKEUP_TUTORIALS_TITLE} />
-<section class="hero">
-	<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
-	<h1 class="hero-title"><em>Rika's</em> Makeup Tutorials</h1>
-	<p class="hero-sub">
-		Morbi ut nisl. Curabitur semper sem. Nulla turpis nibh, tempor nec,
-		aliquet vitae, elementum ac, mauris.Quisque pellentesque metus ac quam.
-		Donec magna nulla, aliquet vitae, congue ac, faucibus ut, erat. Donec
-		sit amet neque. Donec posuere tempus massa. Duis vulputate mauris sit
-		amet purus. Duis vestibulum. Fusce ac erat. Curabitur sagittis.
-	</p>
-</section>
-<TutorialList />
+<div class="body-wrapper">
+	<section class="hero">
+		<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
+		<h1 class="hero-title"><em>Rika's</em> Makeup Tutorials</h1>
+		<p class="hero-sub">
+			It all started with two makeup looks for my MC: a daytime natural
+			and a nighttime glam. Then I got bored and started wondering what
+			she'd look like in different makeup styles. And that's how I fell
+			into the rabbit hole of K-pop-inspired makeup recreations. These
+			tutorials are some of my favourite looks. And yes, they're also
+			serving as backup storage because I ran out of makeup template
+			slots.
+		</p>
+	</section>
+	<TutorialList />
+	<Footer />
+</div>

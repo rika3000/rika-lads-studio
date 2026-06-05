@@ -40,13 +40,11 @@ html {
 }
 
 body {
-    min-height: 100dvh;
+    height: 100dvh;
     position: relative;
     display: flex;
     flex-direction: column;
-
-    background: var(--body-bg-color);
-    /* background: var(--body-bg-color) var(--body-bg-image) no-repeat center center fixed; */
+    background: var(--body-bg-color) var(--body-bg-image) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -55,18 +53,14 @@ body {
     font-family: var(--sans);
     font-weight: 400;
     color: var(--body-text-color);
-
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-body::after {
-    content: '';
-    position: block;
-    /*height: 60px;*/
-    /* set same height as the footer */
-    /*inset: 0;
-    pointer-events: none;*/
-    z-index: 0;
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    overflow-x: hidden;
 }
 
 /* ── HEADER ── */
@@ -271,10 +265,11 @@ body::after {
 /* ── HERO ── */
 .hero {
     position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 1;
     text-align: center;
     margin: 160px calc((100% - var(--max-width-page))/2) 60px;
-    /*padding: 160px 3rem 80px;*/
 }
 
 .hero .hero-eyebrow {
@@ -339,7 +334,7 @@ body::after {
 /* ── MAKEUP TUTORIALS CONTENT ── */
 #makeup-tutorials-container,
 #photo-gallery-container {
-    margin: 0 calc((100% - var(--max-width-page))/2) 10rem;
+    margin: 0 calc((100% - var(--max-width-page))/2) 3rem;
     display: flex;
     flex-direction: column;
 }
@@ -648,13 +643,15 @@ body::after {
 
 /* ── FOOTER ── */
 footer {
-    position: absolute;
-    bottom: 0;
-    /*height: 60px;*/
+    /* position: absolute;
+    bottom: 0; */
+    position: flex;
+    margin-top: auto;
     width: 100%;
-    /* background: var(--footer-bg-color); */
     padding: 30px 0 40px;
-    border-top: 2px solid var(--footer-border-color);
+    z-index: 2;
+    mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 50%);
+    backdrop-filter: blur(10px);
 }
 
 .footer-content {
@@ -732,6 +729,23 @@ footer {
     .navbar {
         padding: 0 1rem;
     }
+
+    .hero {
+        margin-top: 120px;
+        margin-bottom: 40px;
+    }
+
+    #makeup-tutorials-container .tutorial-card .card-body {
+        padding: 2rem 0.6rem 0.4rem;
+    }
+
+    #makeup-tutorials-container .card-title {
+        font-size: 1rem;
+    }
+
+    #makeup-tutorials-container .card-date {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width:750px) {
@@ -741,11 +755,6 @@ footer {
 
     #navigation-menu-btn {
         display: flex;
-    }
-
-    .hero {
-        margin-top: 160px;
-        margin-bottom: 40px;
     }
 
     .hero,
@@ -763,6 +772,11 @@ footer {
 
     #filter-section {
         padding: 20px;
+    }
+
+    #filter-clear-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
 
     .filter-label {
@@ -798,10 +812,6 @@ footer {
         font-size: 0.9rem;
         margin-bottom: 1rem;
         letter-spacing: 0.2rem;
-    }
-
-    #makeup-tutorials-container .tutorial-card .card-body {
-        padding: 2rem 0.6rem 0.4rem;
     }
 
     #makeup-tutorials-container .grid,
@@ -852,6 +862,7 @@ footer {
     }
 
 }
+
 
 
 @media (max-width: 380px) {}

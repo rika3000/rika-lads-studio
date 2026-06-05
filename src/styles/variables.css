@@ -17,15 +17,10 @@
 }
 
 [data-theme="dark"] {
-    /* --background-image: url(/src/assets/dark-theme-bg.jpg); */
-    /* --body-bg-image: url(/images/dark_theme3.jpg); */
+    --body-bg-image: url(/images/bg-dark-theme.webp);
     --body-bg-color: #040A12;
     --body-text-color: var(--white);
 
-    /*white transparent navbar */
-    /* --navbar-bg-color: rgba(245, 242, 237, 0.07);
-    --navbar-border-color: rgba(26, 20, 14, 0.1);
-    --navbar-link-bg-color: rgba(245, 242, 237, 0.2); */
     --navbar-bg-color: rgba(0, 0, 0, 0.5);
     --navbar-border-color: rgba(242, 242, 242, 0.4);
     --navbar-link-color: #C4C1D2;
@@ -47,7 +42,7 @@
     --qr-badge-bg-color: rgba(26, 20, 14, 0.8);
     --qr-badge-text-color: #C5C2D3;
 
-    --filter-box-bg-color: rgba(132, 117, 113, 0.15);
+    --filter-box-bg-color: rgba(26, 20, 14, 0.5);
     --filter-box-border-color: rgba(242, 242, 242, 0.4);
     --filter-text-color: var(--grey-1);
     --filter-reset-btn-bg-color-hover: rgba(242, 242, 242, 0.2);
@@ -64,15 +59,12 @@
 
     --empty-state-text-color: rgba(242, 242, 242, 0.4);
 
-    /* --footer-bg-color: #040A12; */
-    --footer-border-color: rgba(242, 242, 242, 0.1);
     --footer-text-color: #C4C1D2;
 
 }
 
 [data-theme="light"] {
-    /* --background-image: url(/src/assets/light-theme-bg.jpg); */
-    /* --body-bg-image: url(/images/light-theme-bg.jpg); */
+    --body-bg-image: url(/images/bg-light-theme.webp);
     --body-bg-color: #E3E1DD;
     --body-text-color: #4E4749;
 
@@ -115,7 +107,5 @@
 
     --empty-state-text-color: rgba(78, 71, 73, 0.4);
 
-    /* --footer-bg-color: transparent; */
-    --footer-border-color: rgba(78, 71, 73, 0.1);
     --footer-text-color: #4E4749;
 }

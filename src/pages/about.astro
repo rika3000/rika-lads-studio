@@ -1,17 +1,19 @@
 ---
+import Footer from "../components/Footer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { ABOUT_TITLE } from "../lib/constants";
 ---
 
 <BaseLayout pageTitle={ABOUT_TITLE} />
-<section class="hero">
-	<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
-	<h1 class="hero-title">About <em>Rika</em></h1>
-	<p class="hero-sub">
-		Morbi ut nisl. Curabitur semper sem. Nulla turpis nibh, tempor nec,
-		aliquet vitae, elementum ac, mauris.Quisque pellentesque metus ac quam.
-		Donec magna nulla, aliquet vitae, congue ac, faucibus ut, erat. Donec
-		sit amet neque. Donec posuere tempus massa. Duis vulputate mauris sit
-		amet purus. Duis vestibulum. Fusce ac erat. Curabitur sagittis.
-	</p>
-</section>
+<div class="body-wrapper">
+	<section class="hero">
+		<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
+		<h1 class="hero-title">About <em>Rika</em></h1>
+		<p class="hero-sub">
+			Just a penny pincher who somehow spends an unhealthy amount of time
+			in Glint Photobooth instead of fangirling over love interests. And
+			also guilty of reading every card story (＾-＾；)
+		</p>
+	</section>
+	<Footer />
+</div>

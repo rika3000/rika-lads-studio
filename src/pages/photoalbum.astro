@@ -2,18 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { PHOTO_ALBUM_TITLE } from "../lib/constants";
 import PhotoGallery from "../components/PhotoGallery.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout pageTitle={PHOTO_ALBUM_TITLE} />
-<section class="hero">
-	<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
-	<h1 class="hero-title"><em>Rika's</em> Photo Album</h1>
-	<p class="hero-sub">
-		Morbi ut nisl. Curabitur semper sem. Nulla turpis nibh, tempor nec,
-		aliquet vitae, elementum ac, mauris.Quisque pellentesque metus ac quam.
-		Donec magna nulla, aliquet vitae, congue ac, faucibus ut, erat. Donec
-		sit amet neque. Donec posuere tempus massa. Duis vulputate mauris sit
-		amet purus. Duis vestibulum. Fusce ac erat. Curabitur sagittis.
-	</p>
-</section>
-<PhotoGallery />
+<div class="body-wrapper">
+	<section class="hero">
+		<p class="hero-eyebrow">LOVE AND DEEPSPACE</p>
+		<h1 class="hero-title"><em>Rika's</em> Photo Album</h1>
+		<p class="hero-sub">Okay, here's a confession:</p>
+	</section>
+	<PhotoGallery />
+	<Footer />
+</div>
