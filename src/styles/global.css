@@ -138,12 +138,11 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-decoration: none;
-    color: var(--navbar-link-color);
+    color: var(--navbar-link-color-hover);
     letter-spacing: 0.1em;
     font-weight: 400;
-    transition: color 0.3s ease;
 }
 
 .nav-x>svg {
@@ -343,7 +342,7 @@ body {
 }
 
 #lightbox.open {
-    opacity: 0.8;
+    opacity: 0.9;
     pointer-events: all;
 }
 
@@ -592,7 +591,7 @@ body {
     font-family: var(--serif);
     font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.1rem;
     line-height: 1;
 }
 
@@ -710,11 +709,11 @@ footer {
 .footer-content>p {
     color: var(--footer-text-color);
     font-size: 1rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
 }
 
 .footer-content a {
-    color: var(--accent);
+    color: var(--mute-accent);
     text-decoration: none;
 }
 
@@ -858,6 +857,16 @@ footer {
     #makeup-tutorials-container .card-title {
         font-size: 1rem;
     }
+
+    .total {
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+
+    }
+
+    .footer-content>p {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width:750px) {
@@ -919,15 +928,17 @@ footer {
 /* @media (max-width:600px) {} */
 
 @media (max-width: 480px) {
+    .nav-x>svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav-x>.nav-handle {
+        display: none;
+    }
 
     .hero .hero-sub {
         font-size: 0.9rem;
-    }
-
-    .total {
-        font-size: 0.9rem;
-        letter-spacing: 0.2rem;
-
     }
 
     #makeup-tutorials-container .grid {
@@ -980,6 +991,7 @@ footer {
 }
 
 @media (max-height: 400px) {
+
     #navigation-mobile-menu .nav-links li a {
         margin: 1.2rem 2rem 0;
     }

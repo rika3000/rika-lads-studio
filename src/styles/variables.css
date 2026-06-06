@@ -3,6 +3,7 @@
     --sans: 'Jost', sans-serif;
 
     --accent: #C1685A;
+    --mute-accent: #c29791;
     --white: #F2F2F2;
     --black: #1A140E;
     /* 3 shades of grey, 3 is darkest */
@@ -57,7 +58,7 @@
 
     --empty-state-text-color: rgba(242, 242, 242, 0.4);
 
-    --footer-text-color: #C4C1D2;
+    --footer-text-color: rgba(197, 194, 211, 0.7);
 }
 
 [data-theme="light"] {
@@ -102,5 +103,5 @@
 
     --empty-state-text-color: rgba(78, 71, 73, 0.4);
 
-    --footer-text-color: var(--grey-3);
+    --footer-text-color: rgba(135, 103, 88, 0.7);
 }
