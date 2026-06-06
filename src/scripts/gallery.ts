@@ -1,7 +1,7 @@
 import { PHOTO_MODE_ALL } from "../lib/constants";
+import { Lightbox } from "../lib/lightbox";
 
 interface GalleryElements {
-    lightbox: HTMLFormElement,
     allPhotos: NodeListOf<HTMLDivElement>;
     totalPhotoCountTxt: HTMLElement | null;
     emptyState: HTMLElement | null;
@@ -20,16 +20,24 @@ interface GalleryElements {
 }
 
 interface GalleryState {
+    // contains a list of character(s) that are selected for filtering
     activeCharacters: Set<string>;
+    // contains a list of tag(s) that are selected for filtering
     activeTags: Set<string>;
+    // whether "Has QR code" filter is selected
     activeHasQR: boolean;
+    // stores value of selected photo mode filter (either "all", "solo", "duo" or "other"), default is "all"
     activePhotoMode: string;
+    // indices of photos that match current filters. This is used to quickly show/hide photos without re-filtering
     filteredPhotoIndices: Set<number>;
 }
 
+/**
+ * Initializes the gallery variables and state
+ * @returns The initialized gallery elements and state
+ */
 function initVariables() {
     const elements: GalleryElements = {
-        lightbox: document.getElementById('lightbox') as HTMLFormElement,
         allPhotos: document.querySelectorAll(".photo-card"),
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
         emptyState: document.getElementById("gallery-empty-state"),
@@ -59,29 +67,30 @@ function initVariables() {
     return { elements, state };
 }
 
+/**
+ * Toggles the filter section based on the current state
+ * @param elements The gallery elements
+ */
 function toggleFilterSection(elements: GalleryElements) {
+    const lightbox = new Lightbox();
     const isExpanded = elements.showFiltersBtn?.getAttribute('aria-expanded') === 'true';
 
     elements.showFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
     elements.hideFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
 
     if (!isExpanded && window.innerWidth < 1300) {
-
-        openLightbox(elements);
+        lightbox.open();
     } else {
-        closeLightbox(elements);
+        lightbox.close();
     }
 }
 
-function openLightbox(elements: GalleryElements) {
-    elements.lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-function closeLightbox(elements: GalleryElements) {
-    elements.lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-}
 
+/**
+ * Toggles the character filter state
+ * @param activeCharacters The current active characters
+ * @param characterName The character name to toggle
+ */
 function toggleCharacter(activeCharacters: Set<string>, characterName: string) {
     if (activeCharacters.has(characterName)) {
         activeCharacters.delete(characterName);
@@ -90,6 +99,11 @@ function toggleCharacter(activeCharacters: Set<string>, characterName: string) {
     }
 }
 
+/**
+ * Toggles the tag filter state
+ * @param activeTags The current active tags
+ * @param tagName The tag name to toggle
+ */
 function toggleTag(activeTags: Set<string>, tagName: string) {
     if (activeTags.has(tagName)) {
         activeTags.delete(tagName);
@@ -98,6 +112,11 @@ function toggleTag(activeTags: Set<string>, tagName: string) {
     }
 }
 
+/**
+ * Renders the filter UI based on the current state
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
 function renderFilters(state: GalleryState, elements: GalleryElements) {
 
     // Characters filter
@@ -126,6 +145,11 @@ function renderFilters(state: GalleryState, elements: GalleryElements) {
     });
 }
 
+/**
+ * Applies the current filters to the gallery
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
 function applyFilters(state: GalleryState, elements: GalleryElements) {
     state.filteredPhotoIndices.clear();
     elements.allPhotos.forEach((e) => {
@@ -158,6 +182,11 @@ function applyFilters(state: GalleryState, elements: GalleryElements) {
     });
 }
 
+/**
+ * Clears all filters and resets the gallery
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
 function clearAllFilters(state: GalleryState, elements: GalleryElements) {
     state.activeCharacters.clear();
     state.activeTags.clear();
@@ -167,6 +196,11 @@ function clearAllFilters(state: GalleryState, elements: GalleryElements) {
     applyFilters(state, elements);
 }
 
+/**
+ * Renders the gallery based on the current state
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
 function renderGallery(state: GalleryState, elements: GalleryElements) {
 
     // Update total count
@@ -201,6 +235,11 @@ function renderGallery(state: GalleryState, elements: GalleryElements) {
     }
 }
 
+/**
+ * Filters and renders the gallery based on the current state
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
 function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) {
     renderFilters(state, elements);
     applyFilters(state, elements);
@@ -209,6 +248,11 @@ function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) 
 
 
 
+/**
+ * Adds event listeners to the filter buttons
+ * @param elements The gallery elements
+ * @param state The current gallery state
+ */
 function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
     elements.showFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
     elements.hideFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
