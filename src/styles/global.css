@@ -114,7 +114,7 @@ body {
 
 .navbar .nav-links li a:not(.active):hover,
 #navigation-mobile-menu .nav-links li a:not(.active):hover,
-.nav-theme-toggle a:hover,
+#theme-toggle-btn:hover,
 #navigation-menu-btn:hover {
     color: var(--navbar-link-color-hover);
 }
@@ -124,12 +124,14 @@ body {
     border-color: var(--navbar-link-underline-color-active);
 }
 
-.nav-theme-toggle a {
+#theme-toggle-btn {
     cursor: pointer;
     margin-left: 2rem;
-    padding: 0 0.5rem;
     color: var(--navbar-link-color);
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .nav-x {
@@ -157,11 +159,12 @@ body {
     display: flex;
     cursor: pointer;
     padding: 0 0.5rem;
+    margin-right: -0.5rem;
     color: var(--navbar-link-color);
     transition: color 0.3s ease;
 }
 
-.nav-theme-toggle .icon,
+#theme-toggle-btn .icon,
 #navigation-menu-btn .icon,
 #navigation-close-btn .icon {
     width: 28px;
@@ -346,22 +349,12 @@ body {
 }
 
 /* ── MAKEUP TUTORIALS CONTENT ── */
-#makeup-tutorials-container,
-#photo-gallery-container {
-    margin-bottom: 3rem;
-    display: flex;
-    flex-direction: column;
-}
-
-#makeup-tutorials-toolbar,
-#photo-gallery-toolbar {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 1.6rem;
-}
 
 #makeup-tutorials-toolbar {
-    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.6rem;
+    align-items: flex-end;
 }
 
 .total {
@@ -370,9 +363,6 @@ body {
     text-align: right;
     font-weight: 500;
     color: var(--count-text-color);
-    line-height: 1;
-    border: 3px solid transparent;
-    padding: 8px 0;
 }
 
 .grid {
@@ -547,35 +537,39 @@ body {
 /* ── PHOTO GALLERY - TOOLBAR ── */
 
 #photo-gallery-toolbar {
+    display: flex;
+    margin-bottom: 1.6rem;
     justify-content: space-between;
+    align-items: center;
 }
 
 #show-filters-btn,
 #hide-filters-btn {
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.2rem;
-    letter-spacing: 0.3rem;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
     font-weight: 500;
     text-transform: uppercase;
-    color: var(--count-text-color);
+    color: var(--show-hide-filter-btn-text-color);
     line-height: 1;
-    border: 3px solid var(--show-hide-filter-btn-border-color);
     border-radius: 50px;
     padding: 8px 20px;
+    background-color: var(--show-hide-filter-btn-bg-color);
 }
 
 #show-filters-btn svg,
 #hide-filters-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
 }
 
 #show-filters-btn:hover,
 #hide-filters-btn:hover {
-    border-color: var(--count-text-color);
+    background-color: var(--show-hide-filter-btn-bg-color-hover);
 }
+
 
 :has(#show-filters-btn[aria-expanded="false"]) #show-filters-btn,
 :has(#show-filters-btn[aria-expanded="true"]) #hide-filters-btn {
@@ -763,7 +757,7 @@ footer {
     }
 
     .body-wrapper {
-        padding: 0 1rem;
+        padding: 0 3rem;
     }
 
     #makeup-tutorials-container .grid,
@@ -811,6 +805,10 @@ footer {
 
 @media (max-width:750px) {
 
+    .body-wrapper {
+        padding: 0 0.6rem;
+    }
+
     .hero,
     #makeup-tutorials-container,
     #photo-gallery-container {
@@ -828,9 +826,17 @@ footer {
         padding: 20px;
     }
 
-    #filter-clear-btn {
+    #filter-clear-btn,
+    #show-filters-btn,
+    #hide-filters-btn {
         font-size: 0.8rem;
         padding: 8px 12px;
+    }
+
+    #show-filters-btn svg,
+    #hide-filters-btn svg {
+        width: 18px;
+        height: 18px;
     }
 
     .filter-label {
@@ -862,23 +868,10 @@ footer {
         font-size: 0.9rem;
     }
 
-    .total,
-    #show-filters-btn,
-    #hide-filters-btn {
+    .total {
         font-size: 0.9rem;
         letter-spacing: 0.2rem;
-    }
 
-    #show-filters-btn,
-    #hide-filters-btn {
-        border-width: 2px;
-        padding: 6px 12px;
-    }
-
-    #show-filters-btn svg,
-    #hide-filters-btn svg {
-        width: 18px;
-        height: 18px;
     }
 
     #makeup-tutorials-container .grid {
@@ -929,6 +922,16 @@ footer {
         font-size: 0.7rem;
     }
 
+}
+
+@media (max-height: 400px) {
+    #navigation-mobile-menu .nav-links li a {
+        margin: 1.2rem 2rem 0;
+    }
+
+    #navigation-mobile-menu .nav-links li:first-child a {
+        margin-top: 0;
+    }
 }
 
 
