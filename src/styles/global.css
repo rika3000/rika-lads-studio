@@ -718,6 +718,20 @@ footer {
     text-decoration: none;
 }
 
+/* ── DIVIDER ── */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--divider-icon-color);
+}
+
+.divider .icon {
+    width: 24px;
+    height: 24px;
+}
+
 @media (min-width: 1301px) {
     :has(#show-filters-btn[aria-expanded="true"]) #filter-section {
         display: flex;

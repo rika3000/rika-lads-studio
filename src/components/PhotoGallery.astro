@@ -3,6 +3,7 @@ import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoGalleryFilter from "./PhotoGalleryFilter.astro";
 import PhotoCard from "./PhotoCard.astro";
 import PhotoGalleryToolbar from "./PhotoGalleryToolbar.astro";
+import Divider from "./Divider.astro";
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
@@ -54,7 +55,7 @@ const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
             }
         </div>
         <div id="gallery-empty-state">
-            <div class="icon">✦</div>
+            <Divider />
             <p>No photos match the selected filters.</p>
         </div>
     </section>
