@@ -8,6 +8,8 @@ const navigationMenuBtn = document.getElementById('navigation-menu-btn') as HTML
 const navigationCloseBtn = document.getElementById('navigation-close-btn') as HTMLFormElement;
 const lightbox = document.getElementById('lightbox') as HTMLFormElement;
 const footerYearTxt = document.getElementById('footer-year') as HTMLFormElement;
+const showFiltersBtn = document.getElementById("show-filters-btn") as HTMLButtonElement | null;
+const hideFiltersBtn = document.getElementById("hide-filters-btn") as HTMLButtonElement | null;
 
 /* ════════════════════════════════════════════
    THEME TOGGLE
@@ -21,7 +23,6 @@ function init() {
     mobileLightModeBtn.style.display = saved === DARK_THEME ? 'flex' : 'none';
     mobileDarkModeBtn.style.display = saved === DARK_THEME ? 'none' : 'flex';
     footerYearTxt.textContent = `${new Date().getFullYear()}`;
-
 }
 
 function toggleMobileNavigationMenu() {
@@ -47,7 +48,6 @@ function toggleDarkLightTheme() {
     themeToggleBtn.title = next === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
 }
 
-
 themeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
 mobileDarkModeBtn?.addEventListener('click', toggleDarkLightTheme);
 mobileLightModeBtn?.addEventListener('click', toggleDarkLightTheme);
@@ -55,11 +55,20 @@ navigationMenuBtn?.addEventListener('click', toggleMobileNavigationMenu);
 navigationCloseBtn?.addEventListener('click', toggleMobileNavigationMenu);
 
 window.addEventListener('resize', () => {
-    const isExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true' && navigationCloseBtn.getAttribute('aria-expanded') === 'true';
-    if (window.innerWidth > 750 && isExpanded) {
-        navigationMenuBtn.setAttribute('aria-expanded', `${!isExpanded}`);
-        navigationCloseBtn.setAttribute('aria-expanded', `${!isExpanded}`);
-        closeLightbox();
+    const isFilterMenuExpanded = showFiltersBtn?.getAttribute('aria-expanded') === 'true' && hideFiltersBtn?.getAttribute('aria-expanded') === 'true';
+    const isNavigationMenuExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true' && navigationCloseBtn.getAttribute('aria-expanded') === 'true';
+    if (window.innerWidth > 1300) {
+        if (isFilterMenuExpanded) {
+            showFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+            hideFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+            closeLightbox();
+        }
+
+        if (isNavigationMenuExpanded) {
+            navigationMenuBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+            navigationCloseBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+            closeLightbox();
+        }
     }
 });
 
@@ -76,7 +85,14 @@ function closeLightbox() {
 }
 
 lightbox?.addEventListener('click', () => {
+    const isFilterMenuExpanded = showFiltersBtn?.getAttribute('aria-expanded') === 'true' && hideFiltersBtn?.getAttribute('aria-expanded') === 'true';
     const isNavigationMenuExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true' && navigationCloseBtn.getAttribute('aria-expanded') === 'true';
+
+    if (isFilterMenuExpanded) {
+        showFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+        hideFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+        closeLightbox();
+    }
     if (isNavigationMenuExpanded) {
         navigationMenuBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
         navigationCloseBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);

@@ -1,12 +1,14 @@
 import { PHOTO_MODE_ALL } from "../lib/constants";
 
 interface GalleryElements {
+    lightbox: HTMLFormElement,
     allPhotos: NodeListOf<HTMLDivElement>;
     totalPhotoCountTxt: HTMLElement | null;
     emptyState: HTMLElement | null;
     filterClearBtn: HTMLButtonElement | null;
     showFiltersBtn: HTMLButtonElement | null;
     hideFiltersBtn: HTMLButtonElement | null;
+    closeFilterBtn: HTMLButtonElement | null;
     filterSection: HTMLElement | null;
     characterFilterBtns: NodeListOf<HTMLButtonElement>;
     photoModeFilterBtns: NodeListOf<HTMLButtonElement>;
@@ -27,12 +29,14 @@ interface GalleryState {
 
 function initVariables() {
     const elements: GalleryElements = {
+        lightbox: document.getElementById('lightbox') as HTMLFormElement,
         allPhotos: document.querySelectorAll(".photo-card"),
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
         emptyState: document.getElementById("gallery-empty-state"),
         filterClearBtn: document.getElementById("filter-clear-btn") as HTMLButtonElement | null,
         showFiltersBtn: document.getElementById("show-filters-btn") as HTMLButtonElement | null,
         hideFiltersBtn: document.getElementById("hide-filters-btn") as HTMLButtonElement | null,
+        closeFilterBtn: document.getElementById("filter-close-btn") as HTMLButtonElement | null,
         filterSection: document.getElementById("filter-section") as HTMLElement | null,
         characterFilterBtns: document.querySelectorAll("#character-filters button.pill:not([data-character-all])") as NodeListOf<HTMLButtonElement>,
         photoModeFilterBtns: document.querySelectorAll("#photo-mode-filters button.pill:not([data-pm-all])") as NodeListOf<HTMLButtonElement>,
@@ -57,8 +61,25 @@ function initVariables() {
 
 function toggleFilterSection(elements: GalleryElements) {
     const isExpanded = elements.showFiltersBtn?.getAttribute('aria-expanded') === 'true';
+
     elements.showFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
     elements.hideFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
+
+    if (!isExpanded && window.innerWidth < 1300) {
+
+        openLightbox(elements);
+    } else {
+        closeLightbox(elements);
+    }
+}
+
+function openLightbox(elements: GalleryElements) {
+    elements.lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox(elements: GalleryElements) {
+    elements.lightbox.classList.remove('open');
+    document.body.style.overflow = '';
 }
 
 function toggleCharacter(activeCharacters: Set<string>, characterName: string) {
@@ -150,10 +171,13 @@ function renderGallery(state: GalleryState, elements: GalleryElements) {
 
     // Update total count
     if (elements.totalPhotoCountTxt) {
+        elements.totalPhotoCountTxt.textContent = `${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size > 1 ? "S" : ""}`;
+    }
+    if (elements.closeFilterBtn) {
         if (state.filteredPhotoIndices.size === 0) {
-            elements.totalPhotoCountTxt.textContent = "";
+            elements.closeFilterBtn.textContent = "NO PHOTO FOUND";
         } else {
-            elements.totalPhotoCountTxt.textContent = `${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size >= 1 ? "S" : ""}`;
+            elements.closeFilterBtn.textContent = `SHOW ${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size > 1 ? "S" : ""}`;
         }
     }
 
@@ -183,9 +207,12 @@ function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) 
     renderGallery(state, elements);
 }
 
+
+
 function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
     elements.showFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
     elements.hideFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
+    elements.closeFilterBtn?.addEventListener('click', () => toggleFilterSection(elements));
 
     // All characters filter buttons
     elements.allCharactersBtn?.addEventListener("click", () => {
