@@ -29,9 +29,8 @@ const { activePage } = Astro.props;
         <a
             href="/about/"
             aria-label="Go to about page"
-            class={activePage === ABOUT_TITLE ? "active" : ""}
-            >ABOUT</a
+            class={activePage === ABOUT_TITLE ? "active" : ""}>ABOUT</a
         >
     </li>
-    <ThemeToggleBtn />
+    <li><ThemeToggleBtn /></li>
 </ul>

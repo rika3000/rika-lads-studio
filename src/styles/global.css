@@ -382,6 +382,11 @@ body {
     border-radius: 6px 6px 0 0;
 }
 
+.tutorial-card:has(a:focus-visible),
+.photo-card:has(a:focus-visible) {
+    outline: 2px solid var(--white);
+}
+
 #makeup-tutorials-container .tutorial-card a {
     display: flex;
     width: 100%;
