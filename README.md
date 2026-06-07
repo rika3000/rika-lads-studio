@@ -9,7 +9,7 @@ All the tutorials and photos will be redirected to X Posts.
 Inside the Astro project directory, you'll see the following directories and files:
 
 ```text
-
+/
 ├── public/
 │   └── favicon.ico
 │   └── favicon.svg

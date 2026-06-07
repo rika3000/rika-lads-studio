@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { site } from 'astro:config/server';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +9,7 @@ export default defineConfig({
     },
     redirects: {
         "/": "/about"
-    }
+    },
+    site: "https://rika3000.github.io",
+    base: "/rika-lads-studio",
 });
