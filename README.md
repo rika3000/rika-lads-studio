@@ -1,8 +1,26 @@
-# Rika Lads Studio
+# Rika LADS Studio Website
 
-## 🗒️ Overview
-This is a personal website for Rika LADS Studio showcasing makeup tutorials and photo albums created on a mobile game called Love and Deepspace. 
+![Astro](https://img.shields.io/badge/Astro-0C1222?style=for-the-badge&logo=astro&logoColor=FDFDFE) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+
+## 🔎 Overview
+This is a personal website for Rika LADS Studio showcasing makeup tutorials and photo albums created on a mobile game called Love and Deepspace.
 All the tutorials and photos will be redirected to X Posts.
+
+## 🚀 Quick Start
+
+1. Clone the repository
+```bash
+git clone https://github.com/rikaladsstudio/rikaladsstudio.github.io.git
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run the development server
+```bash
+npm run dev
+```
+Visit http://localhost:4321 to view the website.
 
 ## 🗂️ Project Structure
 
@@ -14,6 +32,9 @@ Inside the Astro project directory, you'll see the following directories and fil
 │   └── favicon.ico
 │   └── favicon.svg
 │   └── images/
+│       └── photos/
+│       └── tutorials/
+
 ├── src/
 │   └── components/
 │   |   └── Footer.astro
@@ -33,7 +54,6 @@ Inside the Astro project directory, you'll see the following directories and fil
 │   └── data/
 │   |   └── makeup_tutorials.json
 │   |   └── photo_gallery.json
-│   |   └── photo_gallery_test.json
 │   └── layouts/
 │   |   └── BaseLayout.astro
 │   └── lib/
