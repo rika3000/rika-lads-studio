@@ -3,8 +3,8 @@
 ![Astro](https://img.shields.io/badge/Astro-0C1222?style=for-the-badge&logo=astro&logoColor=FDFDFE) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
 ## 🔎 Overview
-This is a personal website for Rika LADS Studio showcasing makeup tutorials and photo albums created on a mobile game called Love and Deepspace.
-All the tutorials and photos will be redirected to X Posts.
+This is a personal website for Rika LADS Studio showcasing makeup tutorials and glint photobooth photos created on a mobile game called Love and Deepspace.
+All the tutorials and photos are redirected to X Posts under [@rikaLADSstudio](https://x.com/rikaLADSstudio) account.
 
 ## 🚀 Quick Start
 
